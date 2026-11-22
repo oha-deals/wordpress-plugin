@@ -1928,14 +1928,15 @@ span.oha-deals-price {
 }
 
 .oha-deals .oha-deals-coupon__code {
-	padding: 0.45em 0.8em;
+	padding-block: 0.5em;
+	padding-inline: 0.8em 0;
 	border: 0;
 	background: none;
 	color: inherit;
 	font-family: ui-monospace, sfmono-regular, menlo, consolas, monospace;
-	font-size: 1em;
+	font-size: 0.9em;
 	font-weight: 700;
-	letter-spacing: 0.04em;
+	letter-spacing: 0.02em;
 	line-height: 1.35;
 	overflow-wrap: anywhere;
 	user-select: all;
