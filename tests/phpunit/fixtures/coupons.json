@@ -1,0 +1,26 @@
+{
+	"data": [
+		{
+			"id": 101,
+			"shop": "Alternate DE",
+			"host": "alternate.de",
+			"title": "10 € off from 100 €",
+			"description": "Valid on selected notebooks.",
+			"code": "ALT10",
+			"codeHidden": false,
+			"url": "https://oha.deals/g/c1",
+			"validUntil": "2026-12-31"
+		},
+		{
+			"id": "c2",
+			"shop": "Exclusive Shop",
+			"host": "exclusive.example",
+			"title": "Exclusive voucher",
+			"description": "",
+			"code": "SECRET",
+			"codeHidden": true,
+			"url": "javascript:alert(1)",
+			"validUntil": null
+		}
+	]
+}

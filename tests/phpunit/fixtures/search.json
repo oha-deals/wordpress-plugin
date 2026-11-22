@@ -1,0 +1,41 @@
+{
+	"data": [
+		{
+			"id": 12345,
+			"slug": "synology-ds925-plus",
+			"name": "Synology DS925+",
+			"brand": "Synology",
+			"category": { "slug": "nas", "name": "NAS" },
+			"ean": "4711174725762",
+			"image": "https://img.oha.deals/p/synology-ds925-plus.jpg",
+			"price": 944.99,
+			"priceHidden": false,
+			"currency": "EUR",
+			"shop": "Alternate DE",
+			"offerCount": 5,
+			"change": { "d1": 0, "d7": -2.1, "d30": -4.2 },
+			"before": null,
+			"priceAt": null,
+			"url": "https://oha.deals/produkt/synology-ds925-plus"
+		},
+		{
+			"id": 12346,
+			"slug": "synology-ds425-plus",
+			"name": "Synology DS425+",
+			"brand": "Synology",
+			"category": null,
+			"ean": null,
+			"image": "http://insecure.example/image.jpg",
+			"price": null,
+			"priceHidden": true,
+			"currency": "EUR",
+			"shop": null,
+			"offerCount": 2,
+			"before": null,
+			"priceAt": null,
+			"url": "https://oha.deals/produkt/synology-ds425-plus",
+			"unexpectedField": { "ignored": true }
+		}
+	],
+	"meta": { "total": 2, "relaxed": false, "categories": [] }
+}

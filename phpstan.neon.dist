@@ -1,0 +1,22 @@
+parameters:
+    level: 8
+    paths:
+        - oha-deals.php
+        - uninstall.php
+        - includes
+        - templates
+        - patterns
+    excludePaths:
+        - vendor
+        - node_modules
+        - build
+    bootstrapFiles:
+        - tests/phpstan-bootstrap.php
+    scanFiles:
+        - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
+    dynamicConstantNames:
+        - WP_CLI
+    scanDirectories:
+        - includes
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors: []

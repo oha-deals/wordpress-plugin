@@ -1,0 +1,42 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "oha.deals demo",
+		"description": "The plugin with invented demo products, no API key needed.",
+		"author": "ohadeals"
+	},
+	"landingPage": "/?pagename=live-prices",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "mkdir",
+			"path": "/wordpress/wp-content/mu-plugins"
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/oha-deals-demo.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/oha-deals/wordpress-plugin/main/demo/oha-deals-demo.php"
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "oha-deals"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Live prices', 'post_name' => 'live-prices', 'post_content' => wp_slash( '<!-- wp:paragraph --><p>The products, shops and prices on this page are invented.</p><!-- /wp:paragraph --><!-- wp:oha-deals/product {\"slug\":\"wireless-studio-headphones\",\"showHistory\":true} /--><!-- wp:heading --><h2 class=\"wp-block-heading\">Comparison</h2><!-- /wp:heading --><!-- wp:oha-deals/comparison {\"slugs\":[\"wireless-studio-headphones\",\"wireless-home-headphones\",\"wireless-travel-headphones\"]} /--><!-- wp:heading --><h2 class=\"wp-block-heading\">Deals</h2><!-- /wp:heading --><!-- wp:oha-deals/deals {\"limit\":6} /--><!-- wp:heading --><h2 class=\"wp-block-heading\">Coupons</h2><!-- /wp:heading --><!-- wp:oha-deals/coupons /-->' ) ) );"
+		}
+	]
+}

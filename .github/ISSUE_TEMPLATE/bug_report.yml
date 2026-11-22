@@ -1,0 +1,48 @@
+name: Bug report
+description: Something does not work as documented.
+labels: [ bug ]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not paste your API key. For security problems, use a private security advisory instead (see SECURITY.md).
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect and what did you get instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Add the block or shortcode ...
+        2. ...
+    validations:
+      required: true
+  - type: input
+    id: plugin
+    attributes:
+      label: Plugin version
+    validations:
+      required: true
+  - type: input
+    id: wp
+    attributes:
+      label: WordPress version
+    validations:
+      required: true
+  - type: input
+    id: php
+    attributes:
+      label: PHP version
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error messages
+      description: Relevant lines from the PHP error log or the browser console.
+      render: text

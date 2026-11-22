@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security problem
+    url: https://github.com/oha-deals/wordpress-plugin/security/advisories/new
+    about: Please report vulnerabilities privately, not in a public issue.
+  - name: API keys and the oha.deals service
+    url: https://oha.deals/kontakt
+    about: Questions about API keys, prices or products on oha.deals.

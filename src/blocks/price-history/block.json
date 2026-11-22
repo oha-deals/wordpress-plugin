@@ -1,0 +1,85 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "oha-deals/price-history",
+	"title": "oha.deals Price History",
+	"category": "oha-deals",
+	"description": "Draws the price history of one product as a line chart.",
+	"keywords": [
+		"price",
+		"history",
+		"chart",
+		"graph",
+		"trend"
+	],
+	"textdomain": "oha-deals",
+	"version": "1.0.0",
+	"attributes": {
+		"slug": {
+			"type": "string",
+			"default": ""
+		},
+		"ean": {
+			"type": "string",
+			"default": ""
+		},
+		"days": {
+			"type": "number",
+			"enum": [
+				30,
+				90,
+				180,
+				365
+			],
+			"default": 90
+		},
+		"height": {
+			"type": "number",
+			"default": 220
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"color": {
+			"background": true,
+			"text": true,
+			"link": true,
+			"gradients": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"shadow": true,
+		"interactivity": {
+			"interactive": true,
+			"clientNavigation": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"slug": "__example__",
+			"days": 90
+		},
+		"viewportWidth": 640
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "oha-deals-frontend",
+	"viewScriptModule": "file:./view.js"
+}
