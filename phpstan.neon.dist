@@ -7,9 +7,9 @@ parameters:
         - templates
         - patterns
     excludePaths:
-        - vendor
-        - node_modules
-        - build
+        - vendor (?)
+        - node_modules (?)
+        - build (?)
     bootstrapFiles:
         - tests/phpstan-bootstrap.php
     scanFiles:
