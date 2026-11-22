@@ -1,0 +1,47 @@
+{
+	"data": [
+		{
+			"id": 1,
+			"slug": "samsung-990-pro-2tb",
+			"name": "Samsung 990 PRO 2 TB",
+			"brand": "Samsung",
+			"category": { "slug": "ssd", "name": "SSD" },
+			"ean": "8801643925556",
+			"image": "https://img.oha.deals/p/samsung-990-pro-2tb.jpg",
+			"price": 149.9,
+			"priceHidden": false,
+			"currency": "EUR",
+			"shop": "Alternate DE",
+			"offerCount": 9,
+			"change": { "d1": -12.5, "d7": -12.5, "d30": -15 },
+			"before": 179.9,
+			"priceAt": null,
+			"url": "https://oha.deals/produkt/samsung-990-pro-2tb",
+			"kind": "drop",
+			"allTimeLow": true,
+			"lastSeen": "2026-11-20"
+		},
+		{
+			"id": 2,
+			"slug": "kindle-paperwhite",
+			"name": "Kindle Paperwhite",
+			"brand": "Amazon",
+			"category": { "slug": "ebook-reader", "name": "E-Book-Reader" },
+			"ean": null,
+			"image": null,
+			"price": null,
+			"priceHidden": true,
+			"currency": "EUR",
+			"shop": null,
+			"offerCount": 1,
+			"change": { "d1": null, "d7": null, "d30": null },
+			"before": null,
+			"priceAt": null,
+			"url": "https://oha.deals/produkt/kindle-paperwhite",
+			"kind": "low",
+			"allTimeLow": false,
+			"lastSeen": "2026-11-20"
+		}
+	],
+	"meta": { "total": 2, "offset": 0, "hasMore": false, "pricesCheckedAt": "2026-11-20T04:15:00.000Z" }
+}

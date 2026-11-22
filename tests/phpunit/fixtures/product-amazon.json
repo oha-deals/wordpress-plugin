@@ -1,0 +1,44 @@
+{
+	"data": {
+		"id": 777,
+		"slug": "echo-dot-5",
+		"name": "Echo Dot (5. Gen.)",
+		"brand": "Amazon",
+		"category": { "slug": "smart-speaker", "name": "Smart Speaker" },
+		"ean": null,
+		"image": null,
+		"price": 29.99,
+		"priceHidden": false,
+		"currency": "EUR",
+		"shop": "Amazon",
+		"offerCount": 1,
+		"change": { "d1": null, "d7": null, "d30": null },
+		"before": null,
+		"priceAt": "2026-11-20T07:30:00.000Z",
+		"url": "https://oha.deals/produkt/echo-dot-5",
+		"spec": "",
+		"images": [],
+		"attrs": null,
+		"msrp": null,
+		"low30": null,
+		"allTimeLow": null,
+		"offers": [
+			{
+				"shop": { "id": "amazon", "name": "Amazon", "host": "amazon.de" },
+				"price": 29.99,
+				"priceHidden": false,
+				"shipping": 0,
+				"total": 29.99,
+				"currency": "EUR",
+				"availability": "in_stock",
+				"condition": "new",
+				"priceAt": "2026-11-20",
+				"url": "https://oha.deals/api/partner/v1/go/k1/echo-dot-5/amazon",
+				"merchant": { "network": "amazon", "asin": "B09B8V1LZ3", "awinMerchantId": null, "awinProductId": null, "url": null }
+			}
+		],
+		"usedOffers": [],
+		"pricesCheckedAt": "2026-11-20T07:30:00.000Z"
+	},
+	"meta": { "omitted": [ "history" ] }
+}

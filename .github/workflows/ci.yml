@@ -1,0 +1,180 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  # Reused by release.yml, so a release never skips a check.
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php-lint:
+    name: PHPCS and PHPStan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: '8.3'
+          tools: composer
+          coverage: none
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: PHPCS
+        run: composer lint
+
+      - name: PHPStan
+        run: composer analyse
+
+  js:
+    name: JavaScript and CSS
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint JavaScript
+        run: npm run lint:js
+
+      - name: Lint styles
+        run: npm run lint:css
+
+      - name: Unit tests
+        run: npm run test:js
+
+      - name: Build
+        run: npm run build
+
+      - name: Check the build output
+        run: |
+          test -f build/blocks-manifest.php
+          for block in product comparison offers deals price-history coupons; do
+            test -f "build/blocks/$block/block.json"
+            test -f "build/blocks/$block/index.js"
+            test -f "build/blocks/$block/index.asset.php"
+          done
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: build
+          path: build
+          retention-days: 7
+
+  phpunit:
+    name: PHPUnit (PHP ${{ matrix.php }}, WP ${{ matrix.wp }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: js
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.4', '8.1', '8.4' ]
+        # 6.6 is the minimum: the built blocks depend on the react-jsx-runtime script handle added in 6.6.
+        # The PHPUnit suite asserts that every handle in build/blocks/*/index.asset.php is registered.
+        wp: [ '6.6', 'latest' ]
+        exclude:
+          # WordPress 6.6 does not officially support PHP 8.4.
+          - php: '8.4'
+            wp: '6.6'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer
+          coverage: none
+
+      - name: Install Composer dependencies (PHPUnit, polyfills)
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: build
+          path: build
+
+      - name: Configure wp-env
+        env:
+          PHP_VERSION: ${{ matrix.php }}
+          WP_VERSION: ${{ matrix.wp }}
+        run: |
+          if [ "$WP_VERSION" = "latest" ]; then
+            core='null'
+          else
+            core="\"WordPress/WordPress#$WP_VERSION\""
+          fi
+          printf '{ "phpVersion": "%s", "core": %s }\n' "$PHP_VERSION" "$core" > .wp-env.override.json
+          cat .wp-env.override.json
+
+      - name: Start wp-env
+        run: npx wp-env start
+
+      - name: Run PHPUnit
+        run: npx wp-env run tests-cli --env-cwd=wp-content/plugins/oha-deals vendor/bin/phpunit
+
+  plugin-check:
+    name: WordPress Plugin Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: js
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: build
+          path: build
+
+      # Checks exactly what is shipped, not the repository.
+      - name: Stage the release contents
+        run: |
+          rsync -a --exclude-from=.distignore ./ "$RUNNER_TEMP/oha-deals/"
+          mv "$RUNNER_TEMP/oha-deals" plugin-check-build
+
+      - uses: WordPress/plugin-check-action@10857da14b6c2246d15402b3e69f777edcf8c12e # v1.1.9
+        with:
+          build-dir: ./plugin-check-build
+          slug: oha-deals

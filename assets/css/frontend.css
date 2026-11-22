@@ -1,0 +1,2121 @@
+/**
+ * oha.deals – front-end styles.
+ *
+ * Hand-written, no build step. Fonts and colours come from the theme: text,
+ * borders, muted text and surfaces are derived from `currentcolor`, so the
+ * elements work on light and dark backgrounds alike. Layouts follow the width
+ * of the element (container queries), not of the window. Logical properties
+ * only, so there is no separate RTL stylesheet.
+ *
+ * Design tokens. Set them anywhere above the elements, e.g. in the theme's
+ * additional CSS:
+ *
+ *   :root {
+ *     --oha-deals-accent: #0b6bcb;   Buttons, discount badges, chart line;
+ *                                    4.5:1 against the next token.
+ *     --oha-deals-on-accent: #fff;   Text on the accent colour.
+ *     --oha-deals-positive: #1a7f37; Best price, lowest price, in stock.
+ *     --oha-deals-radius: 0.75rem;
+ *     --oha-deals-gap: 1.25rem;      Padding of cards, space between them.
+ *     --oha-deals-border: #ddd;
+ *     --oha-deals-muted: #555;
+ *     --oha-deals-surface: #f6f6f6;  Subtle fills.
+ *     --oha-deals-image-bg: #fff;    Product photos usually come on white.
+ *     --oha-deals-background: #fff;  Behind the sticky labels of comparisons.
+ *   }
+ */
+
+.oha-deals {
+	--ohad-accent: var(--oha-deals-accent, #c2391f);
+	--ohad-on-accent: var(--oha-deals-on-accent, #fff);
+	--ohad-positive: var(--oha-deals-positive, #1a7f37);
+	--ohad-radius: var(--oha-deals-radius, 0.75rem);
+	--ohad-gap: var(--oha-deals-gap, 1.25rem);
+	--ohad-border: var(--oha-deals-border, color-mix(in srgb, currentcolor 16%, transparent));
+	--ohad-muted: var(--oha-deals-muted, color-mix(in srgb, currentcolor 72%, transparent));
+	--ohad-surface: var(--oha-deals-surface, color-mix(in srgb, currentcolor 5%, transparent));
+	--ohad-image-bg: var(--oha-deals-image-bg, #fff);
+
+	/* Coloured text and marks: pulled towards the text colour, so they stay
+	   readable on dark and tinted backgrounds. */
+	--ohad-accent-text: color-mix(in oklab, var(--ohad-accent) 62%, currentcolor);
+	--ohad-accent-mark: color-mix(in oklab, var(--ohad-accent) 84%, currentcolor);
+	--ohad-positive-text: color-mix(in oklab, var(--ohad-positive) 60%, currentcolor);
+	--ohad-positive-mark: color-mix(in oklab, var(--ohad-positive) 76%, currentcolor);
+
+	box-sizing: border-box;
+	container: oha-deals / inline-size;
+	line-height: 1.45;
+	overflow-wrap: break-word;
+}
+
+/* Outside block layouts (shortcodes, classic themes). Zero specificity: the
+   theme's block spacing wins. */
+:where(.oha-deals:not(.oha-deals-price, .oha-deals-product--inline)) {
+	margin-block: 1.5em;
+}
+
+/* A size container has no content width of its own, so it would collapse in
+   rows and stacks. */
+:where(.is-layout-flex) > .oha-deals:not(.oha-deals-product--inline) {
+	inline-size: 100%;
+}
+
+/* Browsers without color-mix(). */
+@supports not (color: color-mix(in srgb, red 50%, transparent)) {
+
+	.oha-deals {
+		--ohad-border: var(--oha-deals-border, rgba(127, 127, 127, 0.4));
+		--ohad-muted: var(--oha-deals-muted, currentcolor);
+		--ohad-surface: var(--oha-deals-surface, rgba(127, 127, 127, 0.1));
+		--ohad-accent-text: currentcolor;
+		--ohad-accent-mark: var(--ohad-accent);
+		--ohad-positive-text: currentcolor;
+		--ohad-positive-mark: currentcolor;
+	}
+}
+
+.oha-deals *,
+.oha-deals *::before,
+.oha-deals *::after {
+	box-sizing: inherit;
+}
+
+.oha-deals :where(p, h3, ul, dl, dd, figure, table) {
+	margin: 0;
+}
+
+.oha-deals :is(.oha-deals-grid, .oha-deals-offer-list, .oha-deals-coupons__list, .oha-deals-chart__legend) {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.oha-deals li {
+	margin: 0;
+}
+
+/* Some themes hide the outline of focused links with very specific rules; the
+   focus has to stay visible, hence !important. */
+.oha-deals :is(a, button, summary):focus-visible:not(.oha-deals-deal__link, .oha-deals-offer-list__link) {
+	outline: 2px solid currentcolor !important;
+	outline-offset: 2px;
+	border-radius: 3px;
+}
+
+.oha-deals .oha-deals-visually-hidden {
+	position: absolute;
+	inline-size: 1px;
+	block-size: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* --- Shared pieces */
+
+.oha-deals-amount {
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.oha-deals-before {
+	color: var(--ohad-muted);
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.oha-deals .oha-deals-as-of {
+	display: block;
+	color: var(--ohad-muted);
+	font-size: 0.75em;
+	font-weight: 400;
+}
+
+.oha-deals-badge {
+	display: inline-block;
+	padding: 0.2em 0.6em;
+	border-radius: 999px;
+	background: color-mix(in srgb, currentcolor 12%, transparent);
+	font-size: 0.75em;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
+.oha-deals-badge--discount {
+	background: var(--ohad-accent);
+	color: var(--ohad-on-accent);
+	direction: ltr;
+	font-weight: 700;
+	unicode-bidi: isolate;
+}
+
+.oha-deals-badge--best {
+	color: var(--ohad-positive-text);
+}
+
+.oha-deals .oha-deals-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-block-size: 2.75rem;
+	padding: 0.5em 1.1em;
+	border: 1px solid transparent;
+	border-radius: calc(var(--ohad-radius) * 0.75);
+	font-size: 0.95em;
+	font-weight: 600;
+	line-height: 1.25;
+	text-align: center;
+	text-decoration: none;
+	transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.oha-deals .oha-deals-button--small {
+	min-block-size: 2.5rem;
+	padding: 0.35em 1em;
+	font-size: 0.875em;
+}
+
+.oha-deals .oha-deals-button--primary,
+.oha-deals .oha-deals-button--primary:is(:hover, :focus, :active, :visited) {
+	background-color: var(--ohad-accent);
+	color: var(--ohad-on-accent);
+}
+
+.oha-deals .oha-deals-button--primary:hover {
+	background-color: color-mix(in oklab, var(--ohad-accent) 86%, #000);
+	box-shadow: 0 2px 8px color-mix(in srgb, var(--ohad-accent) 35%, transparent);
+}
+
+.oha-deals .oha-deals-button--secondary,
+.oha-deals .oha-deals-button--secondary:is(:hover, :focus, :active, :visited) {
+	border-color: color-mix(in srgb, currentcolor 50%, transparent);
+	background-color: transparent;
+	color: inherit;
+}
+
+.oha-deals .oha-deals-button--secondary:hover {
+	border-color: currentcolor;
+	background-color: var(--ohad-surface);
+}
+
+.oha-deals a.oha-deals-button.oha-deals-button:focus-visible {
+	outline-offset: 3px;
+	border-radius: calc(var(--ohad-radius) * 0.75);
+}
+
+/* The button's own text colour can match the page, so its ring uses the accent
+   colour. */
+.oha-deals a.oha-deals-button.oha-deals-button--primary:focus-visible {
+	outline-color: var(--ohad-accent) !important;
+}
+
+.oha-deals .oha-deals-image {
+	display: block;
+	inline-size: 100%;
+	max-inline-size: 100%;
+	block-size: auto;
+	aspect-ratio: 1;
+	border-radius: 0;
+	object-fit: contain;
+}
+
+.oha-deals-stock {
+	display: flex;
+	align-items: baseline;
+	gap: 0.45em;
+	color: var(--ohad-muted);
+	font-size: 0.85em;
+	font-weight: 400;
+}
+
+.oha-deals-stock::before {
+	content: "";
+	flex: none;
+	inline-size: 0.55em;
+	block-size: 0.55em;
+	border: 1.5px solid currentcolor;
+	border-radius: 50%;
+}
+
+.oha-deals-stock--in_stock::before {
+	border-color: var(--ohad-positive-mark);
+	background: var(--ohad-positive-mark);
+}
+
+.oha-deals .oha-deals-footer {
+	display: block;
+	margin-block-start: 0.9rem;
+	color: var(--ohad-muted);
+	font-size: 0.75em;
+	line-height: 1.5;
+}
+
+.oha-deals .oha-deals-footer .oha-deals-note {
+	font-size: inherit;
+}
+
+.oha-deals .oha-deals-footer .oha-deals-note + .oha-deals-note {
+	margin-block-start: 0.2em;
+}
+
+.oha-deals .oha-deals-footer a {
+	color: inherit;
+}
+
+/* Cards. The block's own colour, border, radius, shadow and padding settings
+   are inline styles and win. */
+.oha-deals-product--card,
+.oha-deals-product--compact,
+.oha-deals-offers,
+.oha-deals-price-history {
+	padding: max(0.75rem, min(var(--ohad-gap), 5%));
+	border: 1px solid var(--ohad-border);
+	border-radius: var(--ohad-radius);
+}
+
+:where(.oha-deals-deals, .oha-deals-coupons).has-background {
+	padding: var(--ohad-gap);
+}
+
+/* --- Product card */
+
+.oha-deals-product__body {
+	display: grid;
+	grid-template: "media head" auto "buy buy" auto / 5.5rem minmax(0, 1fr);
+	gap: 1rem;
+	align-items: start;
+}
+
+.oha-deals-product__body--no-media {
+	grid-template: "head" auto "buy" auto / minmax(0, 1fr);
+}
+
+.oha-deals-product__media {
+	grid-area: media;
+	padding: 0.5rem;
+	border: 1px solid var(--ohad-border);
+	border-radius: calc(var(--ohad-radius) * 0.75);
+	background: var(--ohad-image-bg);
+}
+
+.oha-deals-product__main {
+	display: contents;
+}
+
+.oha-deals-product__head {
+	grid-area: head;
+	min-inline-size: 0;
+}
+
+.oha-deals-product__buy {
+	display: grid;
+	grid-area: buy;
+	gap: 0.9rem;
+}
+
+.oha-deals .oha-deals-product__brand {
+	color: var(--ohad-muted);
+	font-size: 0.85em;
+	font-weight: 500;
+}
+
+.oha-deals .oha-deals-product__title {
+	font-size: 1.2em;
+	font-weight: 650;
+	line-height: 1.25;
+	letter-spacing: -0.005em;
+}
+
+.oha-deals .oha-deals-product__spec {
+	display: -webkit-box;
+	margin-block-start: 0.35em;
+	overflow: hidden;
+	color: var(--ohad-muted);
+	font-size: 0.875em;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+}
+
+.oha-deals .oha-deals-price-block__label {
+	color: var(--ohad-muted);
+	font-size: 0.8em;
+}
+
+.oha-deals-price-block__line {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem 0.6rem;
+}
+
+.oha-deals-price-block .oha-deals-amount {
+	font-size: 1.85em;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+}
+
+.oha-deals .oha-deals-price-block__before,
+.oha-deals .oha-deals-price-block__shop {
+	color: var(--ohad-muted);
+	font-size: 0.875em;
+	font-variant-numeric: tabular-nums;
+}
+
+.oha-deals-product__action .oha-deals-button {
+	inline-size: 100%;
+}
+
+@container oha-deals (min-width: 30rem) {
+
+	.oha-deals-product--card .oha-deals-product__body {
+		grid-template: "media main" auto / minmax(8rem, 26%) minmax(0, 1fr);
+		gap: 1.5rem;
+		align-items: stretch;
+	}
+
+	.oha-deals-product--card .oha-deals-product__body--no-media {
+		grid-template: "main" auto / minmax(0, 1fr);
+	}
+
+	.oha-deals-product--card .oha-deals-product__media {
+		align-self: start;
+		max-inline-size: 15rem;
+		padding: 0.75rem;
+	}
+
+	.oha-deals-product--card .oha-deals-product__main {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		grid-area: main;
+		min-inline-size: 0;
+	}
+
+	.oha-deals-product--card .oha-deals-product__buy {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 0.9rem 1.25rem;
+		margin-block-start: auto;
+	}
+
+	.oha-deals-product--card .oha-deals-product__action .oha-deals-button {
+		inline-size: auto;
+	}
+
+	.oha-deals-product--card .oha-deals-product__title {
+		font-size: 1.3em;
+	}
+}
+
+@container oha-deals (min-width: 48rem) {
+
+	.oha-deals-product--card .oha-deals-product__body {
+		grid-template-columns: 15rem minmax(0, 1fr);
+		gap: 2rem;
+	}
+
+	.oha-deals-product--card .oha-deals-product__body--no-media {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.oha-deals-product--card .oha-deals-product__title {
+		font-size: 1.5em;
+	}
+
+	.oha-deals-product--card .oha-deals-price-block .oha-deals-amount {
+		font-size: 2.1em;
+	}
+}
+
+/* Compact: one row. */
+.oha-deals-product--compact {
+	padding: max(0.75rem, min(var(--ohad-gap) * 0.8, 5%));
+}
+
+.oha-deals-product--compact .oha-deals-product__body {
+	grid-template-columns: 4rem minmax(0, 1fr);
+	gap: 0.85rem;
+	align-items: center;
+}
+
+.oha-deals-product--compact .oha-deals-product__body--no-media {
+	grid-template-columns: minmax(0, 1fr);
+}
+
+.oha-deals-product--compact .oha-deals-product__media {
+	padding: 0.3rem;
+}
+
+.oha-deals-product--compact .oha-deals-product__title {
+	font-size: 1em;
+}
+
+.oha-deals-product--compact .oha-deals-price-block .oha-deals-amount {
+	font-size: 1.3em;
+}
+
+.oha-deals-product--compact .oha-deals-product__buy {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem 0.85rem;
+	align-items: center;
+}
+
+.oha-deals-product--compact .oha-deals-price-block {
+	flex: 1 1 8rem;
+}
+
+.oha-deals-product--compact .oha-deals-product__action {
+	flex: 1 1 auto;
+}
+
+.oha-deals-product--compact .oha-deals-price-block__label {
+	display: none;
+}
+
+.oha-deals-product--compact .oha-deals-price-block__before-label {
+	position: absolute;
+	inline-size: 1px;
+	block-size: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.oha-deals-product--compact .oha-deals-price-block__before {
+	display: inline;
+	margin-inline-end: 0.4em;
+}
+
+.oha-deals-product--compact .oha-deals-price-block__shop {
+	display: inline;
+}
+
+.oha-deals-product--compact .oha-deals-footer {
+	margin-block-start: 0.6rem;
+}
+
+@container oha-deals (min-width: 36rem) {
+
+	.oha-deals-product--compact .oha-deals-product__body {
+		grid-template: "media main" auto / 4.5rem minmax(0, 1fr);
+		gap: 1rem;
+	}
+
+	.oha-deals-product--compact .oha-deals-product__body--no-media {
+		grid-template: "main" auto / minmax(0, 1fr);
+	}
+
+	.oha-deals-product--compact .oha-deals-product__main {
+		display: grid;
+		grid-area: main;
+		grid-template-columns: minmax(0, 1fr) auto;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.oha-deals-product--compact .oha-deals-product__head,
+	.oha-deals-product--compact .oha-deals-product__buy {
+		grid-area: auto;
+	}
+
+	.oha-deals-product--compact .oha-deals-product__buy {
+		flex-wrap: nowrap;
+		gap: 1rem;
+	}
+
+	.oha-deals-product--compact .oha-deals-price-block__before,
+	.oha-deals-product--compact .oha-deals-price-block__shop {
+		display: block;
+		margin: 0;
+	}
+
+	.oha-deals .oha-deals-product__action .oha-deals-button--small {
+		padding-inline: 0.85em;
+		font-size: 0.82em;
+	}
+
+	.oha-deals-product--compact .oha-deals-price-block {
+		flex: none;
+		max-inline-size: 11rem;
+		text-align: end;
+	}
+
+	.oha-deals-product--compact .oha-deals-price-block__line {
+		flex-direction: row-reverse;
+		justify-content: flex-start;
+	}
+}
+
+/* Offers under a card. Subgrid lines up prices and links across the rows. */
+.oha-deals .oha-deals-offer-list {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto auto;
+	margin-block-start: var(--ohad-gap);
+	border-block-start: 1px solid var(--ohad-border);
+}
+
+.oha-deals .oha-deals-offer-list__item {
+	position: relative;
+	display: grid;
+	grid-column: 1 / -1;
+	grid-template-columns: minmax(0, 1fr) auto minmax(7rem, auto);
+	column-gap: 1.25rem;
+	align-items: center;
+	margin-inline: -0.5rem;
+	padding: 0.65rem 0.5rem;
+	transition: background-color 0.15s ease;
+}
+
+/* The row is wider than the list (hover background), the divider is not. */
+.oha-deals-offer-list__item + .oha-deals-offer-list__item::before {
+	content: "";
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline: 0.5rem;
+	border-block-start: 1px solid var(--ohad-border);
+	pointer-events: none;
+}
+
+@supports (grid-template-columns: subgrid) {
+
+	.oha-deals .oha-deals-offer-list__item {
+		grid-template-columns: subgrid;
+	}
+}
+
+.oha-deals-offer-list__item:hover {
+	background: var(--ohad-surface);
+}
+
+.oha-deals-offer-list__shop {
+	font-weight: 600;
+	overflow-wrap: anywhere;
+}
+
+.oha-deals-offer-list__price {
+	text-align: end;
+	font-variant-numeric: tabular-nums;
+}
+
+.oha-deals .oha-deals-offer-list__shipping {
+	display: block;
+	color: var(--ohad-muted);
+	font-size: 0.8em;
+}
+
+.oha-deals-offer-list__hidden {
+	color: var(--ohad-muted);
+	font-size: 0.875em;
+}
+
+.oha-deals .oha-deals-offer-list__link {
+	max-inline-size: 14rem;
+	font-size: 0.875em;
+	font-weight: 600;
+	text-align: end;
+	text-underline-offset: 0.2em;
+}
+
+.oha-deals .oha-deals-offer-list__link:not(:hover) {
+	text-decoration-thickness: 1px;
+}
+
+/* The whole row is the click target. */
+.oha-deals-offer-list__link::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.oha-deals .oha-deals-offer-list__link:focus-visible {
+	outline: none;
+}
+
+.oha-deals .oha-deals-offer-list__link:focus-visible::after {
+	outline: 2px solid currentcolor;
+	outline-offset: -2px;
+	border-radius: 4px;
+}
+
+@container oha-deals (max-width: 26rem) {
+
+	.oha-deals .oha-deals-offer-list {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	.oha-deals .oha-deals-offer-list__item {
+		grid-template-columns: minmax(0, 1fr) auto;
+		column-gap: 0.75rem;
+	}
+
+	.oha-deals .oha-deals-offer-list__link {
+		grid-column: 1 / -1;
+		max-inline-size: none;
+		text-align: start;
+	}
+}
+
+/* Sidebars and quarter columns. */
+@container oha-deals (max-width: 16rem) {
+
+	.oha-deals-product__body:not(.oha-deals-product__body--no-media) {
+		grid-template-columns: 3.5rem minmax(0, 1fr);
+	}
+
+	.oha-deals-product__media {
+		padding: 0.25rem;
+	}
+
+	.oha-deals .oha-deals-offer-list,
+	.oha-deals .oha-deals-offer-list__item {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.oha-deals-offer-list__price {
+		text-align: start;
+	}
+}
+
+.oha-deals-product .oha-deals-chart {
+	margin-block-start: var(--ohad-gap);
+	padding-block-start: var(--ohad-gap);
+	border-block-start: 1px solid var(--ohad-border);
+}
+
+.oha-deals-product .oha-deals-offer-list + .oha-deals-chart {
+	margin-block-start: 0;
+}
+
+/* --- Inline mention, [oha_deals_price] */
+
+.oha-deals-product--inline,
+.oha-deals-price {
+	container: none;
+	line-height: inherit;
+}
+
+span.oha-deals-product--inline,
+span.oha-deals-price {
+	display: inline;
+}
+
+.oha-deals-inline__link,
+.oha-deals-inline__name {
+	font-weight: 600;
+}
+
+.oha-deals-inline__price {
+	font-variant-numeric: tabular-nums;
+}
+
+.oha-deals:is(.oha-deals-product--inline, .oha-deals-price) :is(.oha-deals-as-of, .oha-deals-footer, .oha-deals-note) {
+	display: inline;
+	margin: 0;
+}
+
+/* Brackets keep the notes apart from the sentence around them. */
+.oha-deals:is(.oha-deals-product--inline, .oha-deals-price) .oha-deals-footer::before {
+	content: "(";
+}
+
+.oha-deals:is(.oha-deals-product--inline, .oha-deals-price) .oha-deals-footer::after {
+	content: ")";
+}
+
+/* --- Tables */
+
+.oha-deals-table-scroll {
+	overflow-x: auto;
+}
+
+.oha-deals .oha-deals-table {
+	inline-size: 100%;
+	min-inline-size: 0;
+	border: 0;
+	border-spacing: 0;
+	border-collapse: separate;
+	font-size: 1em;
+	font-variant-numeric: tabular-nums;
+}
+
+.oha-deals .oha-deals-table caption {
+	padding-block: 0 0.75rem;
+	caption-side: top;
+	color: inherit;
+	font-size: 1em;
+	font-weight: 600;
+	text-align: start;
+}
+
+.oha-deals .oha-deals-table :is(thead, tbody, tr) {
+	border: 0;
+	background: none;
+}
+
+.oha-deals .oha-deals-table :is(th, td) {
+	padding: 0.75rem 0.6rem;
+	border: 0;
+	border-block-end: 1px solid var(--ohad-border);
+	background: none;
+	color: inherit;
+	font-weight: 400;
+	text-align: start;
+	vertical-align: middle;
+}
+
+.oha-deals .oha-deals-table thead :is(th, td) {
+	padding-block: 0.4rem;
+	color: var(--ohad-muted);
+	font-size: 0.8em;
+	font-weight: 500;
+}
+
+.oha-deals .oha-deals-offers-table tbody tr:last-child > * {
+	border-block-end: 0;
+}
+
+.oha-deals .oha-deals-offers-table .oha-deals-offers-table__shop {
+	inline-size: 100%;
+	overflow-wrap: anywhere;
+}
+
+.oha-deals-offers-table__name {
+	margin-inline-end: 0.35em;
+	font-weight: 600;
+}
+
+.oha-deals .oha-deals-offers-table .oha-deals-offers-table__price {
+	text-align: end;
+	white-space: nowrap;
+}
+
+.oha-deals-offers-table__price .oha-deals-amount {
+	font-size: 1.05em;
+}
+
+.oha-deals .oha-deals-offers-table__shipping {
+	display: block;
+	color: var(--ohad-muted);
+	font-size: 0.8em;
+}
+
+.oha-deals-offers-table__hidden {
+	color: var(--ohad-muted);
+	font-size: 0.875em;
+}
+
+.oha-deals .oha-deals-offers-table .oha-deals-offers-table__action {
+	min-inline-size: 9rem;
+	padding-inline-end: 0;
+	text-align: end;
+	white-space: nowrap;
+}
+
+/* Long notes may wrap, prices do not. */
+.oha-deals .oha-deals-offers-table__price .oha-deals-as-of {
+	max-inline-size: 12rem;
+	margin-inline-start: auto;
+	white-space: normal;
+}
+
+.oha-deals-offers-table__action .oha-deals-button {
+	inline-size: 100%;
+}
+
+/* The best row: label, bar and tint, so colour is never the only marker. */
+.oha-deals .oha-deals-offers-table .oha-deals-offers-table__row--best > * {
+	border-block-end-color: transparent;
+	background: color-mix(in srgb, var(--ohad-positive) 9%, transparent);
+}
+
+.oha-deals .oha-deals-offers-table .oha-deals-offers-table__row--best > .oha-deals-offers-table__shop {
+	position: relative;
+}
+
+.oha-deals-offers-table__row--best > .oha-deals-offers-table__shop::before {
+	content: "";
+	position: absolute;
+	inset-block: 0;
+	inset-inline-start: 0;
+	inline-size: 3px;
+	background: var(--ohad-positive-mark);
+}
+
+.oha-deals .oha-deals-offers-table .oha-deals-offers-table__row--best > .oha-deals-offers-table__action {
+	padding-inline-end: 0.6rem;
+}
+
+@container oha-deals (max-width: 30rem) {
+
+	.oha-deals .oha-deals-offers-table,
+	.oha-deals .oha-deals-offers-table :is(caption, tbody) {
+		display: block;
+	}
+
+	.oha-deals .oha-deals-offers-table thead {
+		position: absolute;
+		inline-size: 1px;
+		block-size: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+	}
+
+	.oha-deals .oha-deals-offers-table__row {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		gap: 0.6rem 0.75rem;
+		padding: 0.85rem 0;
+		border-block-end: 1px solid var(--ohad-border);
+	}
+
+	.oha-deals .oha-deals-offers-table__row:last-child {
+		border-block-end: 0;
+	}
+
+	.oha-deals .oha-deals-offers-table .oha-deals-offers-table__row > *,
+	.oha-deals .oha-deals-offers-table .oha-deals-offers-table__row--best > .oha-deals-offers-table__action {
+		padding: 0;
+		border: 0;
+	}
+
+	.oha-deals .oha-deals-offers-table .oha-deals-offers-table__action {
+		grid-column: 1 / -1;
+		white-space: normal;
+	}
+
+	.oha-deals .oha-deals-offers-table__action:empty {
+		display: none;
+	}
+
+	.oha-deals .oha-deals-offers-table .oha-deals-offers-table__row--best {
+		margin-inline: -0.6rem;
+		padding-inline: 0.6rem;
+		border-radius: calc(var(--ohad-radius) * 0.5);
+		position: relative;
+		background: color-mix(in srgb, var(--ohad-positive) 9%, transparent);
+	}
+
+	.oha-deals .oha-deals-offers-table .oha-deals-offers-table__row--best > * {
+		background: none;
+	}
+
+	.oha-deals .oha-deals-offers-table .oha-deals-offers-table__row--best > .oha-deals-offers-table__shop {
+		position: static;
+	}
+}
+
+@container oha-deals (max-width: 16rem) {
+
+	.oha-deals .oha-deals-offers-table__row {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.oha-deals .oha-deals-offers-table .oha-deals-offers-table__price {
+		text-align: start;
+	}
+}
+
+/* --- Comparison */
+
+/* Length of the fade at the end of a scrollable table. */
+@property --ohad-fade {
+	syntax: "<length>";
+	inherits: false;
+	initial-value: 0;
+}
+
+.oha-deals-comparison {
+	padding: max(0.75rem, min(var(--ohad-gap), 5%));
+	border: 1px solid var(--ohad-border);
+	border-radius: var(--ohad-radius);
+}
+
+.oha-deals-comparison__scroll {
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scrollbar-width: thin;
+	border-radius: calc(var(--ohad-radius) * 0.5);
+}
+
+.oha-deals-comparison__scroll:focus-visible {
+	outline: 2px solid currentcolor;
+	outline-offset: 2px;
+}
+
+/* A fade shows that there is more, and goes away at the end. Without overflow
+   the scroll timeline is inactive. */
+@supports (animation-timeline: scroll()) {
+
+	.oha-deals-comparison__scroll {
+		--ohad-mask-to: to right;
+
+		-webkit-mask: linear-gradient(var(--ohad-mask-to), #000 calc(100% - var(--ohad-fade)), transparent);
+		mask: linear-gradient(var(--ohad-mask-to), #000 calc(100% - var(--ohad-fade)), transparent);
+		animation: ohad-fade linear;
+		animation-timeline: scroll(self inline);
+	}
+
+	.oha-deals-comparison__scroll:dir(rtl) {
+		--ohad-mask-to: to left;
+	}
+
+	@keyframes ohad-fade {
+
+		0%,
+		85% {
+			--ohad-fade: 3rem;
+		}
+
+		100% {
+			--ohad-fade: 0;
+		}
+	}
+}
+
+/* As wide as the visible part, not as the table. */
+.oha-deals-comparison__title {
+	position: sticky;
+	inset-inline-start: 0;
+	display: inline-block;
+	max-inline-size: 85cqi;
+	font-size: 1.1em;
+}
+
+.oha-deals .oha-deals-comparison__table tbody tr:last-child > * {
+	border-block-end: 0;
+}
+
+.oha-deals-comparison__product {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.oha-deals-comparison__media {
+	display: block;
+	flex: none;
+	padding: 0.5rem;
+	aspect-ratio: 1;
+	border: 1px solid var(--ohad-border);
+	border-radius: calc(var(--ohad-radius) * 0.75);
+	background: var(--ohad-image-bg);
+}
+
+.oha-deals-comparison__text {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	align-items: flex-start;
+	min-inline-size: 0;
+}
+
+.oha-deals-comparison__brand {
+	color: var(--ohad-muted);
+	font-size: 0.85em;
+	font-weight: 400;
+}
+
+.oha-deals-comparison__name {
+	font-weight: 650;
+	line-height: 1.3;
+}
+
+.oha-deals-comparison__specs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.1rem 0.75rem;
+	color: var(--ohad-muted);
+	font-size: 0.8em;
+	font-weight: 400;
+}
+
+.oha-deals-comparison__number {
+	display: inline-grid;
+	place-items: center;
+	min-inline-size: 1.75rem;
+	block-size: 1.75rem;
+	padding-inline: 0.4rem;
+	border-radius: 999px;
+	background: color-mix(in srgb, currentcolor 12%, transparent);
+	font-size: 0.875rem;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	line-height: 1;
+}
+
+.oha-deals .oha-deals-comparison__note {
+	display: block;
+	color: var(--ohad-muted);
+	font-size: 0.8em;
+	font-weight: 400;
+}
+
+.oha-deals-comparison__hidden {
+	color: var(--ohad-muted);
+	font-size: 0.875em;
+}
+
+.oha-deals-comparison__table--rows .oha-deals-comparison__cell--shop {
+	min-inline-size: 8rem;
+}
+
+.oha-deals-comparison__cell--price .oha-deals-amount {
+	font-size: 1.2em;
+}
+
+.oha-deals-comparison__cell--price .oha-deals-badge {
+	vertical-align: 0.15em;
+}
+
+.oha-deals-comparison__action .oha-deals-button {
+	inline-size: 100%;
+}
+
+.oha-deals-change {
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.oha-deals-change--down {
+	color: var(--ohad-positive-text);
+	font-weight: 600;
+}
+
+/* Columns: one product per column, the labels stay in view. */
+.oha-deals .oha-deals-comparison__table--columns {
+	--ohad-label-size: clamp(6rem, 17cqi, 12rem);
+
+	min-inline-size: calc(var(--ohad-label-size) + var(--oha-deals-products) * 7.5rem);
+	table-layout: fixed;
+}
+
+.oha-deals .oha-deals-comparison__table--columns :is(th, td) {
+	padding-inline: 0.5rem;
+	overflow-wrap: anywhere;
+}
+
+.oha-deals-comparison__table--columns .oha-deals-comparison__name {
+	font-size: 0.9em;
+	hyphens: auto;
+}
+
+.oha-deals .oha-deals-comparison__table--columns .oha-deals-button {
+	padding-inline: 0.3em;
+	font-size: 0.8em;
+}
+
+.oha-deals .oha-deals-comparison__table--columns :is(th, td) {
+	vertical-align: top;
+}
+
+.oha-deals .oha-deals-comparison__table--columns :is(.oha-deals-comparison__corner, .oha-deals-comparison__attribute) {
+	position: sticky;
+	z-index: 1;
+	inset-inline-start: 0;
+	inline-size: var(--ohad-label-size);
+	padding-inline-start: 0;
+
+	/* The page background is unknown, so the labels are frosted. Set
+	   --oha-deals-background for a solid one. */
+	background: var(--oha-deals-background, transparent);
+	backdrop-filter: blur(14px);
+	color: var(--ohad-muted);
+	font-size: 0.875em;
+	font-weight: 500;
+}
+
+.oha-deals .oha-deals-comparison__table--columns .oha-deals-comparison__head {
+	padding: 0.6rem;
+	color: inherit;
+	font-size: 1em;
+}
+
+.oha-deals-comparison__table--columns .oha-deals-comparison__media {
+	inline-size: min(100%, 8rem);
+}
+
+.oha-deals-comparison__table--columns .oha-deals-comparison__number {
+	margin-block-end: 0.5rem;
+}
+
+.oha-deals .oha-deals-comparison__table--columns .is-best {
+	border-inline: 2px solid var(--ohad-positive-mark);
+	background: color-mix(in srgb, var(--ohad-positive) 7%, transparent);
+}
+
+.oha-deals .oha-deals-comparison__table--columns thead .is-best {
+	border-block-start: 2px solid var(--ohad-positive-mark);
+	border-start-start-radius: calc(var(--ohad-radius) * 0.75);
+	border-start-end-radius: calc(var(--ohad-radius) * 0.75);
+}
+
+.oha-deals .oha-deals-comparison__table--columns tbody tr:last-child .is-best {
+	border-block-end: 2px solid var(--ohad-positive-mark);
+	border-end-start-radius: calc(var(--ohad-radius) * 0.75);
+	border-end-end-radius: calc(var(--ohad-radius) * 0.75);
+}
+
+/* Rows: a ranked list. */
+.oha-deals-comparison__label {
+	display: none;
+}
+
+.oha-deals-comparison__table--rows .oha-deals-comparison__product {
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+}
+
+.oha-deals-comparison__table--rows .oha-deals-comparison__media {
+	inline-size: 4.5rem;
+	padding: 0.35rem;
+}
+
+.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__head {
+	inline-size: 28%;
+	min-inline-size: 12rem;
+	font-weight: inherit;
+}
+
+.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__rank {
+	inline-size: 1%;
+	padding-inline-end: 0;
+}
+
+.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__action {
+	padding-inline-end: 0;
+}
+
+.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__row--best > * {
+	background: color-mix(in srgb, var(--ohad-positive) 9%, transparent);
+}
+
+.oha-deals .oha-deals-comparison__table--rows .oha-deals-button {
+	white-space: nowrap;
+}
+
+.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__row--best > .oha-deals-comparison__action {
+	padding-inline-end: 0.6rem;
+}
+
+@container oha-deals (max-width: 46rem) {
+
+	.oha-deals-comparison--rows .oha-deals-comparison__scroll {
+		overflow: visible;
+		-webkit-mask: none;
+		mask: none;
+		animation: none;
+	}
+
+	.oha-deals .oha-deals-comparison__table--rows,
+	.oha-deals .oha-deals-comparison__table--rows :is(caption, tbody) {
+		display: block;
+	}
+
+	.oha-deals .oha-deals-comparison__table--rows thead {
+		position: absolute;
+		inline-size: 1px;
+		block-size: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+	}
+
+	.oha-deals .oha-deals-comparison__table--rows tbody {
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__row {
+		position: relative;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 6.5rem), 1fr));
+		gap: 0.9rem 1rem;
+		padding: 1rem;
+		border: 1px solid var(--ohad-border);
+		border-radius: calc(var(--ohad-radius) * 0.75);
+	}
+
+	.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__row--best {
+		border: 2px solid var(--ohad-positive-mark);
+		background: color-mix(in srgb, var(--ohad-positive) 7%, transparent);
+	}
+
+	.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__row > *,
+	.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__row--best > .oha-deals-comparison__action {
+		inline-size: auto;
+		min-inline-size: 0;
+		padding: 0;
+		border: 0;
+		background: none;
+	}
+
+	.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__row > :is(.oha-deals-comparison__head, .oha-deals-comparison__action) {
+		grid-column: 1 / -1;
+	}
+
+	.oha-deals .oha-deals-comparison__table--rows .oha-deals-comparison__row > .oha-deals-comparison__rank {
+		position: absolute;
+		z-index: 1;
+		inset-block-start: 0.5rem;
+		inset-inline-start: 0.5rem;
+	}
+
+	.oha-deals-comparison__table--rows .oha-deals-comparison__number {
+		background: var(--ohad-accent);
+		color: var(--ohad-on-accent);
+	}
+
+	.oha-deals .oha-deals-comparison__table--rows .oha-deals-button {
+		white-space: normal;
+	}
+
+	.oha-deals .oha-deals-comparison__table--rows .is-empty {
+		display: none;
+	}
+
+	.oha-deals-comparison__label {
+		display: block;
+		color: var(--ohad-muted);
+		font-size: 0.8em;
+	}
+}
+
+/* --- Deals grid */
+
+.oha-deals .oha-deals-grid {
+	--ohad-grid-gap: 1rem;
+
+	display: grid;
+
+	/* At most --oha-deals-columns columns, fewer when they would get narrower
+	   than 10rem. */
+	--ohad-columns: var(--oha-deals-columns, 3);
+	--ohad-gaps: calc((var(--ohad-columns) - 1) * var(--ohad-grid-gap));
+	--ohad-column: calc((100% - var(--ohad-gaps)) / var(--ohad-columns));
+
+	grid-template-columns: repeat(auto-fill, minmax(max(10rem, var(--ohad-column)), 1fr));
+	gap: var(--ohad-grid-gap);
+}
+
+.oha-deals-deal {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border: 1px solid var(--ohad-border);
+	border-radius: var(--ohad-radius);
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.oha-deals-deal:has(.oha-deals-deal__link):hover {
+	border-color: color-mix(in srgb, currentcolor 40%, transparent);
+	box-shadow: 0 4px 16px color-mix(in srgb, currentcolor 10%, transparent);
+}
+
+.oha-deals-deal__media {
+	position: relative;
+	display: grid;
+	aspect-ratio: 4 / 3;
+	place-items: center;
+	padding: 0.75rem;
+	border-block-end: 1px solid var(--ohad-border);
+	background: var(--ohad-image-bg);
+	color: #757575;
+}
+
+.oha-deals .oha-deals-deal__media .oha-deals-image {
+	position: absolute;
+	inset: 0.75rem;
+	inline-size: calc(100% - 1.5rem);
+	block-size: calc(100% - 1.5rem);
+	aspect-ratio: auto;
+	transition: scale 0.2s ease;
+}
+
+.oha-deals-deal:has(.oha-deals-deal__link):hover .oha-deals-image {
+	scale: 1.03;
+}
+
+.oha-deals-deal__discount {
+	position: absolute;
+	inset-block-start: 0.6rem;
+	inset-inline-start: 0.6rem;
+	font-size: 0.8em;
+}
+
+.oha-deals-deal__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 0.3rem;
+	min-inline-size: 0;
+	padding: 0.85rem 0.9rem 1rem;
+}
+
+.oha-deals .oha-deals-deal__kind {
+	overflow: hidden;
+	color: var(--ohad-muted);
+	font-size: 0.75em;
+	font-weight: 600;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.oha-deals .oha-deals-deal__kind--low {
+	color: var(--ohad-positive-text);
+}
+
+.oha-deals .oha-deals-deal__title {
+	display: -webkit-box;
+	overflow: hidden;
+	font-size: 0.9em;
+	font-weight: 600;
+	line-height: 1.35;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	hyphens: auto;
+	line-clamp: 3;
+	overflow-wrap: anywhere;
+}
+
+.oha-deals .oha-deals-deal__link {
+	text-decoration: none;
+}
+
+/* A link colour set on the block reaches the titles. */
+.oha-deals:not(.has-link-color) .oha-deals-deal__link {
+	color: inherit;
+}
+
+.oha-deals .oha-deals-deal__link:hover {
+	text-decoration: underline;
+	text-underline-offset: 0.15em;
+}
+
+/* The whole card is the click target. */
+.oha-deals-deal__link::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	border-radius: inherit;
+}
+
+.oha-deals .oha-deals-deal__link:focus-visible {
+	outline: none;
+}
+
+.oha-deals .oha-deals-deal__link:focus-visible::after {
+	outline: 2px solid currentcolor;
+	outline-offset: -3px;
+	border-radius: var(--ohad-radius);
+}
+
+.oha-deals-deal__buy {
+	margin-block-start: auto;
+	padding-block-start: 0.35rem;
+}
+
+.oha-deals-deal__price {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0 0.5rem;
+}
+
+.oha-deals-deal__price .oha-deals-amount {
+	font-size: 1.25em;
+	letter-spacing: -0.01em;
+}
+
+.oha-deals-deal__price .oha-deals-before {
+	font-size: 0.875em;
+}
+
+.oha-deals .oha-deals-deal__shop {
+	overflow: hidden;
+	color: var(--ohad-muted);
+	font-size: 0.8em;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* One column: image beside the text. */
+@container oha-deals (max-width: 22rem) {
+
+	.oha-deals .oha-deals-grid {
+		--ohad-grid-gap: 0.75rem;
+
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.oha-deals-deal {
+		flex-direction: row;
+	}
+
+	.oha-deals-deal__media {
+		flex: 0 0 34%;
+		aspect-ratio: auto;
+		min-block-size: 7rem;
+		border-block-end: 0;
+		border-inline-end: 1px solid var(--ohad-border);
+	}
+
+	.oha-deals-deal__body {
+		padding: 0.75rem;
+	}
+}
+
+/* --- Price history */
+
+.oha-deals-history__header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0.15rem 1rem;
+	margin-block-end: 0.9rem;
+}
+
+.oha-deals-history__heading {
+	font-weight: 600;
+}
+
+.oha-deals .oha-deals-history__period {
+	color: var(--ohad-muted);
+	font-size: 0.85em;
+}
+
+.oha-deals-history__empty {
+	color: var(--ohad-muted);
+}
+
+.oha-deals .oha-deals-history__low {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin-block-start: 1rem;
+	padding: 0.6rem 0.8rem;
+	border-radius: calc(var(--ohad-radius) * 0.75);
+	background: color-mix(in srgb, var(--ohad-positive) 10%, transparent);
+	font-size: 0.9em;
+	font-weight: 500;
+}
+
+.oha-deals-history__low-icon {
+	flex: none;
+	color: var(--ohad-positive-text);
+}
+
+.oha-deals-chart__stats {
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	gap: 0.5rem 2rem;
+	justify-content: start;
+	margin-block-end: 1.25rem;
+}
+
+.oha-deals .oha-deals-chart__stat dt {
+	margin: 0;
+	color: var(--ohad-muted);
+	font-size: 0.8em;
+	font-weight: 400;
+}
+
+.oha-deals .oha-deals-chart__stat dd {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 1.1em;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+.oha-deals .oha-deals-chart__stat--now dd {
+	font-weight: 700;
+}
+
+.oha-deals .oha-deals-chart__stat--low dd {
+	color: var(--ohad-positive-text);
+}
+
+/* Time runs left to right in every language, so the frame is physical. */
+.oha-deals-chart__frame {
+	display: grid;
+	direction: ltr;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: 0.5rem 0.75rem;
+	padding-block-start: 0.6rem;
+	padding-inline-end: 0.4rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.oha-deals-chart__label {
+	color: var(--ohad-muted);
+	font-size: 0.8125rem;
+	line-height: 1;
+	white-space: nowrap;
+}
+
+/* All labels share one cell, so the column is as wide as the longest one. */
+.oha-deals-chart__y {
+	display: grid;
+	block-size: var(--oha-deals-chart-height);
+}
+
+.oha-deals-chart__y .oha-deals-chart__label {
+	position: relative;
+	grid-area: 1 / 1;
+	align-self: start;
+	justify-self: end;
+	top: var(--y);
+	translate: 0 -50%;
+}
+
+.oha-deals-chart__plot {
+	position: relative;
+	block-size: var(--oha-deals-chart-height);
+}
+
+.oha-deals .oha-deals-chart__svg {
+	display: block;
+	position: absolute;
+	inset: 0;
+	inline-size: 100%;
+	max-inline-size: none;
+	block-size: 100%;
+	overflow: visible;
+}
+
+.oha-deals-chart__svg > * {
+	vector-effect: non-scaling-stroke;
+}
+
+.oha-deals-chart__grid {
+	stroke: color-mix(in srgb, currentcolor 11%, transparent);
+	stroke-opacity: 1;
+	stroke-width: 1;
+}
+
+.oha-deals-chart__area {
+	fill: var(--ohad-accent);
+	fill-opacity: 0.1;
+}
+
+.oha-deals-chart__line {
+	stroke: var(--ohad-accent-mark);
+	stroke-width: 2.5;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+}
+
+.oha-deals-chart__avg {
+	stroke: var(--ohad-muted);
+	stroke-width: 1.5;
+	stroke-dasharray: 5 4;
+}
+
+.oha-deals-chart__marker {
+	position: absolute;
+	top: var(--y);
+	left: var(--x);
+	inline-size: 0;
+	block-size: 0;
+}
+
+.oha-deals-chart__marker::before,
+.oha-deals-chart__dot {
+	content: "";
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	inline-size: 10px;
+	block-size: 10px;
+	border-radius: 50%;
+	background: var(--ohad-accent-mark);
+}
+
+.oha-deals-chart__marker--now::before {
+	box-shadow: 0 0 0 4px color-mix(in srgb, var(--ohad-accent) 25%, transparent);
+}
+
+.oha-deals-chart__marker--low::before {
+	background: var(--ohad-positive-mark);
+}
+
+.oha-deals-chart__marker--high::before,
+.oha-deals-chart__marker--current::before {
+	display: none;
+}
+
+/* Shifted by its own width times x, so the text never leaves the plot. */
+.oha-deals-chart__marker-text {
+	position: absolute;
+	left: 0;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	line-height: 1;
+	translate: calc(var(--x) * -1) 0;
+	white-space: nowrap;
+}
+
+.oha-deals-chart__marker--high .oha-deals-chart__marker-text {
+	bottom: 0.5rem;
+}
+
+.oha-deals-chart__marker--low .oha-deals-chart__marker-text {
+	top: 0.65rem;
+	color: var(--ohad-positive-text);
+}
+
+.oha-deals-chart__x {
+	display: flex;
+	grid-column: 2;
+	justify-content: space-between;
+}
+
+@container oha-deals (max-width: 24rem) {
+
+	.oha-deals-chart__x .oha-deals-chart__label:nth-child(2n) {
+		display: none;
+	}
+
+	.oha-deals-chart__x .oha-deals-chart__label:last-child {
+		display: inline;
+	}
+
+	.oha-deals-chart__x .oha-deals-chart__label:nth-child(3) {
+		display: none;
+	}
+
+	.oha-deals-chart__stats {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 0.15rem;
+		justify-content: stretch;
+	}
+
+	.oha-deals-chart__stat {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+}
+
+/* Readout: added by the script module. */
+.oha-deals-chart__readout {
+	position: absolute;
+	inset: 0;
+	cursor: crosshair;
+	touch-action: pan-y;
+}
+
+.oha-deals-chart__readout[hidden] {
+	display: none;
+}
+
+.oha-deals .oha-deals-chart__readout:focus:not(:focus-visible) {
+	outline: none;
+}
+
+.oha-deals .oha-deals-chart__readout:focus-visible {
+	outline: 2px solid currentcolor;
+	outline-offset: 4px;
+	border-radius: 4px;
+}
+
+.oha-deals-chart__readout > * {
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.12s ease;
+}
+
+.oha-deals-chart__readout.is-active > * {
+	opacity: 1;
+}
+
+.oha-deals-chart__cursor {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--x);
+	border-inline-start: 1px dashed var(--ohad-muted);
+}
+
+.oha-deals-chart__dot {
+	top: calc(var(--y) - 6px);
+	left: calc(var(--x) - 6px);
+	inline-size: 12px;
+	block-size: 12px;
+	border: 2px solid var(--ohad-on-accent);
+	background: var(--ohad-accent);
+}
+
+.oha-deals-chart__tooltip {
+	position: absolute;
+	z-index: 2;
+	top: -0.5rem;
+	left: var(--x);
+	display: grid;
+	gap: 0.1rem;
+	padding: 0.45rem 0.7rem;
+	border-radius: 0.5rem;
+	background: #1c1c1e;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+	color: #fff;
+	font-size: 0.8125rem;
+	line-height: 1.3;
+	translate: calc(var(--x) * -1) -35%;
+	white-space: nowrap;
+}
+
+.oha-deals-chart__tooltip-price {
+	font-size: 0.9375rem;
+}
+
+.oha-deals .oha-deals-chart__legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1.25rem;
+	margin-block-start: 0.9rem;
+	color: var(--ohad-muted);
+	font-size: 0.8125rem;
+}
+
+.oha-deals-chart__key {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.oha-deals-chart__key::before {
+	content: "";
+	inline-size: 1.4rem;
+	border-block-start: 3px solid var(--ohad-accent-mark);
+	border-radius: 2px;
+}
+
+.oha-deals-chart__key--avg::before {
+	border-block-start: 2px dashed currentcolor;
+	border-radius: 0;
+}
+
+.oha-deals-chart__data {
+	margin-block-start: 0.75rem;
+	font-size: 0.875em;
+}
+
+.oha-deals-chart__data summary {
+	inline-size: fit-content;
+	color: var(--ohad-muted);
+	cursor: pointer;
+}
+
+.oha-deals-chart__data summary:hover {
+	color: inherit;
+}
+
+.oha-deals-chart__data .oha-deals-table-scroll {
+	max-block-size: 20rem;
+	margin-block-start: 0.6rem;
+	overflow-y: auto;
+}
+
+.oha-deals .oha-deals-chart__data :is(th, td) {
+	padding: 0.4rem 0.6rem;
+}
+
+/* --- Coupons */
+
+.oha-deals .oha-deals-coupons__list {
+	display: grid;
+	gap: 0.9rem;
+}
+
+/* A ticket: body and stub are two sheets with round notches where they meet. */
+.oha-deals-coupon {
+	--ohad-notch: 0.6rem;
+
+	display: grid;
+}
+
+.oha-deals-coupon__body,
+.oha-deals-coupon__stub {
+	padding: var(--ohad-gap);
+	background: var(--ohad-surface);
+}
+
+.oha-deals-coupon__body {
+	border-radius: var(--ohad-radius) var(--ohad-radius) 0 0;
+	-webkit-mask: var(--ohad-mask);
+	mask: var(--ohad-mask);
+
+	--ohad-mask:
+		radial-gradient(circle var(--ohad-notch) at 0 100%, transparent 98%, #000) left / 51% 100% no-repeat,
+		radial-gradient(circle var(--ohad-notch) at 100% 100%, transparent 98%, #000) right / 51% 100% no-repeat;
+}
+
+.oha-deals-coupon__stub {
+	position: relative;
+	display: grid;
+	gap: 0.6rem;
+	align-content: center;
+	padding-inline: max(0.9rem, var(--ohad-gap) * 0.8);
+	border-radius: 0 0 var(--ohad-radius) var(--ohad-radius);
+	-webkit-mask: var(--ohad-mask);
+	mask: var(--ohad-mask);
+
+	--ohad-mask:
+		radial-gradient(circle var(--ohad-notch) at 0 0, transparent 98%, #000) left / 51% 100% no-repeat,
+		radial-gradient(circle var(--ohad-notch) at 100% 0, transparent 98%, #000) right / 51% 100% no-repeat;
+}
+
+/* The perforation. */
+.oha-deals-coupon__stub::before {
+	content: "";
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline: calc(var(--ohad-notch) + 0.4rem);
+	border-block-start: 2px dashed var(--ohad-border);
+}
+
+.oha-deals .oha-deals-coupon__shop {
+	color: var(--ohad-accent-text);
+	font-size: 0.85em;
+	font-weight: 600;
+}
+
+.oha-deals .oha-deals-coupon__title {
+	font-size: 1.15em;
+	font-weight: 650;
+	line-height: 1.3;
+	overflow-wrap: anywhere;
+}
+
+.oha-deals .oha-deals-coupon__description {
+	margin-block-start: 0.3em;
+	font-size: 0.9em;
+}
+
+.oha-deals .oha-deals-coupon__until {
+	margin-block-start: 0.5em;
+	color: var(--ohad-muted);
+	font-size: 0.8em;
+}
+
+.oha-deals-coupon__chip {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
+	border: 2px dashed color-mix(in srgb, currentcolor 45%, transparent);
+	border-radius: calc(var(--ohad-radius) * 0.6);
+}
+
+.oha-deals-coupon__chip.is-copied {
+	border-color: var(--ohad-positive-text);
+}
+
+.oha-deals .oha-deals-coupon__code {
+	padding: 0.45em 0.8em;
+	border: 0;
+	background: none;
+	color: inherit;
+	font-family: ui-monospace, sfmono-regular, menlo, consolas, monospace;
+	font-size: 1em;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	line-height: 1.35;
+	overflow-wrap: anywhere;
+	user-select: all;
+}
+
+/* The space is reserved, so nothing moves when the script module shows the
+   button. */
+.oha-deals .oha-deals-coupon__chip .oha-deals-coupon__copy.oha-deals-coupon__copy {
+	display: grid;
+	place-items: center;
+	inline-size: 2.5rem;
+	min-block-size: 2.5rem;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: calc(var(--ohad-radius) * 0.5);
+	background: none;
+	color: inherit;
+	cursor: pointer;
+	visibility: hidden;
+}
+
+.oha-deals .oha-deals-coupon__chip.is-ready .oha-deals-coupon__copy.oha-deals-coupon__copy {
+	visibility: visible;
+}
+
+.oha-deals .oha-deals-coupon__chip .oha-deals-coupon__copy.oha-deals-coupon__copy:is(:hover, :focus) {
+	background: color-mix(in srgb, currentcolor 10%, transparent);
+	color: inherit;
+}
+
+.oha-deals .oha-deals-coupon__chip.is-copied .oha-deals-coupon__copy.oha-deals-coupon__copy {
+	color: var(--ohad-positive-text);
+}
+
+.oha-deals-coupon__icon-done,
+.oha-deals-coupon__chip.is-copied .oha-deals-coupon__icon-copy {
+	display: none;
+}
+
+.oha-deals-coupon__chip.is-copied .oha-deals-coupon__icon-done {
+	display: inline;
+}
+
+.oha-deals-coupon__status {
+	grid-column: 1 / -1;
+	padding: 0 0.8em 0.5em;
+	font-size: 0.8em;
+}
+
+/* "Copied" is shown by the check mark; the text is for screen readers. The
+   manual hint stays visible. */
+.oha-deals-coupon__status:empty,
+.oha-deals-coupon__chip.is-copied .oha-deals-coupon__status {
+	position: absolute;
+	inline-size: 1px;
+	block-size: 1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.oha-deals .oha-deals-coupon__hint {
+	color: var(--ohad-muted);
+	font-size: 0.85em;
+	text-align: center;
+}
+
+.oha-deals .oha-deals-coupon__action .oha-deals-button {
+	inline-size: 100%;
+	padding-inline: 0.5em;
+}
+
+@container oha-deals (min-width: 34rem) {
+
+	.oha-deals-coupon {
+		grid-template-columns: minmax(0, 1fr) minmax(14rem, 34%);
+	}
+
+	.oha-deals-coupon__body {
+		border-start-start-radius: var(--ohad-radius);
+		border-start-end-radius: 0;
+		border-end-start-radius: var(--ohad-radius);
+		border-end-end-radius: 0;
+
+		--ohad-mask:
+			radial-gradient(circle var(--ohad-notch) at 100% 0, transparent 98%, #000) top / 100% 51% no-repeat,
+			radial-gradient(circle var(--ohad-notch) at 100% 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+	}
+
+	.oha-deals-coupon__stub {
+		border-start-start-radius: 0;
+		border-start-end-radius: var(--ohad-radius);
+		border-end-start-radius: 0;
+		border-end-end-radius: var(--ohad-radius);
+
+		--ohad-mask:
+			radial-gradient(circle var(--ohad-notch) at 0 0, transparent 98%, #000) top / 100% 51% no-repeat,
+			radial-gradient(circle var(--ohad-notch) at 0 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+	}
+
+	.oha-deals-coupon__body:dir(rtl) {
+
+		--ohad-mask:
+			radial-gradient(circle var(--ohad-notch) at 0 0, transparent 98%, #000) top / 100% 51% no-repeat,
+			radial-gradient(circle var(--ohad-notch) at 0 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+	}
+
+	.oha-deals-coupon__stub:dir(rtl) {
+
+		--ohad-mask:
+			radial-gradient(circle var(--ohad-notch) at 100% 0, transparent 98%, #000) top / 100% 51% no-repeat,
+			radial-gradient(circle var(--ohad-notch) at 100% 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+	}
+
+	.oha-deals-coupon__stub::before {
+		inset-block: calc(var(--ohad-notch) + 0.4rem);
+		inset-inline: 0 auto;
+		border-block-start: 0;
+		border-inline-start: 2px dashed var(--ohad-border);
+	}
+}
+
+/* --- Editor-only notice */
+
+.oha-deals.oha-deals-notice {
+	display: block;
+	padding: 0.6rem 0.8rem;
+	border: 1px dashed currentcolor;
+	border-inline-start-width: 4px;
+	border-radius: 0.25rem;
+	font-size: 0.9em;
+}
+
+span.oha-deals.oha-deals-notice {
+	display: inline;
+	container: none;
+	padding: 0.1em 0.4em;
+}
+
+.oha-deals-notice__hint {
+	color: var(--ohad-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.oha-deals *,
+	.oha-deals *::before,
+	.oha-deals *::after {
+		transition: none;
+	}
+
+	.oha-deals-deal:hover .oha-deals-image {
+		scale: none;
+	}
+}
+
+@media (forced-colors: active) {
+
+	.oha-deals .oha-deals-button {
+		border-color: LinkText;
+	}
+
+	.oha-deals-badge,
+	.oha-deals-chart__tooltip {
+		border: 1px solid CanvasText;
+	}
+
+	.oha-deals-chart__line {
+		stroke: CanvasText;
+	}
+}
+
+@media print {
+
+	.oha-deals-product__action,
+	.oha-deals-offer-list__link,
+	.oha-deals-offers-table__action,
+	.oha-deals-coupon__copy {
+		display: none;
+	}
+}

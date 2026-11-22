@@ -1,0 +1,99 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "oha-deals/deals",
+	"title": "oha.deals Deals",
+	"category": "oha-deals",
+	"description": "Shows current price drops and lowest prices from oha.deals.",
+	"keywords": [
+		"deals",
+		"discount",
+		"price drop",
+		"offers",
+		"sale"
+	],
+	"textdomain": "oha-deals",
+	"version": "1.0.0",
+	"attributes": {
+		"mode": {
+			"type": "string",
+			"enum": [
+				"all",
+				"drop",
+				"low"
+			],
+			"default": "all"
+		},
+		"category": {
+			"type": "string",
+			"default": ""
+		},
+		"sort": {
+			"type": "string",
+			"enum": [
+				"percent",
+				"amount",
+				"price",
+				"new"
+			],
+			"default": "percent"
+		},
+		"limit": {
+			"type": "number",
+			"default": 6
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"minPrice": {
+			"type": "number"
+		},
+		"maxPrice": {
+			"type": "number"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"color": {
+			"background": true,
+			"text": true,
+			"link": true,
+			"gradients": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"shadow": true,
+		"interactivity": {
+			"clientNavigation": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"category": "__example__",
+			"limit": 3,
+			"columns": 3
+		},
+		"viewportWidth": 700
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "oha-deals-frontend"
+}

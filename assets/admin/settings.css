@@ -1,0 +1,361 @@
+/**
+ * Settings → oha.deals. Hand-written, not compiled. Logical properties only,
+ * so no RTL file is needed.
+ */
+
+.oha-deals-settings {
+	--oha-admin-accent: var(--wp-admin-theme-color, #2271b1);
+	--oha-admin-border: #dcdcde;
+	--oha-admin-text: #1d2327;
+	--oha-admin-muted: #50575e;
+	--oha-admin-good: #008a20;
+	--oha-admin-bad: #d63638;
+	--oha-admin-wait: #996800;
+
+	max-width: 1160px;
+}
+
+/* Header. */
+.oha-deals-settings__header {
+	align-items: center;
+	display: flex;
+	gap: 14px;
+	margin-block: 16px 20px;
+}
+
+.oha-deals-settings__header img {
+	block-size: 44px;
+	flex: none;
+	inline-size: 44px;
+}
+
+.oha-deals-settings__header h1 {
+	font-size: 23px;
+	font-weight: 500;
+	line-height: 1.25;
+	margin: 0;
+	padding: 0;
+}
+
+.oha-deals-settings__header p {
+	color: var(--oha-admin-muted);
+	font-size: 14px;
+	margin: 2px 0 0;
+}
+
+/* Layout. */
+.oha-deals-settings__layout {
+	align-items: start;
+	display: grid;
+	gap: 20px;
+	grid-template-columns: minmax(0, 800px);
+}
+
+@media (min-width: 1180px) {
+
+	.oha-deals-settings__layout {
+		grid-template-columns: minmax(0, 800px) minmax(280px, 340px);
+	}
+}
+
+.oha-deals-settings__side {
+	display: grid;
+	gap: 20px;
+}
+
+/* Cards. */
+.oha-deals-card {
+	background: #fff;
+	border: 1px solid var(--oha-admin-border);
+	border-radius: 8px;
+	box-sizing: border-box;
+	padding: 20px 24px;
+}
+
+.oha-deals-settings__main .oha-deals-card {
+	margin-block-end: 20px;
+}
+
+.oha-deals-card > h2 {
+	color: var(--oha-admin-text);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.4;
+	margin: 0 0 8px;
+	padding: 0;
+}
+
+.oha-deals-card > p {
+	color: var(--oha-admin-muted);
+	margin-block: 0 10px;
+	max-width: 66ch;
+}
+
+.oha-deals-card .form-table {
+	margin-block: 8px 0;
+}
+
+.oha-deals-card .form-table th {
+	inline-size: 170px;
+	padding-block: 14px;
+	padding-inline: 0 16px;
+}
+
+.oha-deals-card .form-table td {
+	padding-block: 12px;
+	padding-inline: 0;
+}
+
+.oha-deals-card .form-table tr + tr > * {
+	border-block-start: 1px solid #f0f0f1;
+}
+
+.oha-deals-card .form-table tr:last-child > * {
+	padding-block-end: 0;
+}
+
+.oha-deals-card .form-table fieldset label {
+	align-items: flex-start;
+	display: flex;
+	gap: 8px;
+	line-height: 1.5;
+	margin: 0 !important; /* Core sets this with a more specific selector. */
+}
+
+.oha-deals-card .form-table fieldset input[type="checkbox"] {
+	flex: none;
+	margin-block: 2px 0;
+	margin-inline: 0;
+}
+
+.oha-deals-card .description {
+	max-width: 62ch;
+}
+
+.oha-deals-settings .submit {
+	margin: 0;
+	padding: 0 0 20px;
+}
+
+/* Status card. */
+.oha-deals-status__title {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.oha-deals-status__dot {
+	background: currentcolor;
+	block-size: 10px;
+	border-radius: 50%;
+	color: #8c8f94;
+	flex: none;
+	inline-size: 10px;
+}
+
+.oha-deals-status[data-state="connected"] .oha-deals-status__dot {
+	color: var(--oha-admin-good);
+}
+
+.oha-deals-status[data-state="problem"] .oha-deals-status__dot {
+	color: var(--oha-admin-bad);
+}
+
+.oha-deals-status[data-state="checking"] .oha-deals-status__dot {
+	color: var(--oha-admin-wait);
+}
+
+.oha-deals-status__plan {
+	background: #f0f0f1;
+	border-radius: 999px;
+	color: var(--oha-admin-text);
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1;
+	padding: 5px 10px;
+}
+
+.oha-deals-status .oha-deals-status__problem {
+	border-inline-start: 4px solid var(--oha-admin-bad);
+	color: var(--oha-admin-text);
+	padding-block: 4px;
+	padding-inline-start: 12px;
+}
+
+.oha-deals-status__facts {
+	display: grid;
+	gap: 14px 24px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin: 14px 0 0;
+}
+
+.oha-deals-status__facts[hidden],
+.oha-deals-status__facts > [hidden] {
+	display: none;
+}
+
+.oha-deals-status__facts > :first-child {
+	grid-column: 1 / -1;
+}
+
+.oha-deals-status__facts dt {
+	color: var(--oha-admin-muted);
+	font-size: 12px;
+	font-weight: 400;
+	margin: 0 0 3px;
+}
+
+.oha-deals-status__facts dd {
+	color: var(--oha-admin-text);
+	margin: 0;
+}
+
+.oha-deals-status__capabilities {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 20px;
+	margin: 0;
+}
+
+.oha-deals-status__capabilities li {
+	align-items: center;
+	display: flex;
+	gap: 6px;
+	margin: 0;
+}
+
+.oha-deals-status__capabilities li::before {
+	color: var(--oha-admin-good);
+	content: "\2713" / "";
+	font-weight: 700;
+}
+
+.oha-deals-status__capabilities .is-off {
+	color: #646970;
+}
+
+.oha-deals-status__capabilities .is-off::before {
+	color: #646970;
+	content: "\2013" / "";
+}
+
+.oha-deals-card > .oha-deals-status__actions {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 18px 0 0;
+	max-width: none;
+}
+
+.oha-deals-status__actions .button[aria-disabled="true"] {
+	cursor: default;
+	opacity: 0.6;
+}
+
+.oha-deals-status__actions .spinner {
+	display: none;
+	float: none;
+	margin: 0 4px;
+}
+
+.oha-deals-status__actions .spinner.is-active {
+	display: inline-block;
+}
+
+.oha-deals-status__result {
+	color: var(--oha-admin-muted);
+	flex: 1 1 220px;
+	min-inline-size: 0;
+}
+
+.oha-deals-steps {
+	color: var(--oha-admin-text);
+	margin-block: 0;
+	margin-inline: 1.4em 0;
+}
+
+/* Guide. */
+.oha-deals-guide__list {
+	margin: 14px 0 0;
+}
+
+.oha-deals-guide__list li {
+	border-block-start: 1px solid #f0f0f1;
+	margin: 0;
+	padding-block: 12px;
+}
+
+.oha-deals-guide__text {
+	color: var(--oha-admin-muted);
+	display: block;
+}
+
+.oha-deals-guide__shortcode {
+	align-items: center;
+	display: flex;
+	gap: 8px;
+	margin-block-start: 6px;
+}
+
+.oha-deals-guide__shortcode code {
+	border-radius: 4px;
+	direction: ltr;
+	flex: 1 1 auto;
+	font-size: 12px;
+	line-height: 1.5;
+	min-inline-size: 0;
+	overflow-wrap: anywhere;
+	padding: 5px 8px;
+}
+
+.oha-deals-guide__shortcode .button {
+	flex: none;
+	min-inline-size: 68px;
+	text-align: center;
+}
+
+.oha-deals-guide__shortcode .is-copied {
+	border-color: var(--oha-admin-good);
+	color: var(--oha-admin-good);
+}
+
+.oha-deals-links ul {
+	margin: 0;
+}
+
+.oha-deals-links a {
+	color: var(--oha-admin-accent);
+}
+
+@media (max-width: 782px) {
+
+	.oha-deals-card {
+		padding: 18px 16px;
+	}
+
+	.oha-deals-card .form-table th {
+		inline-size: auto;
+		padding-block: 14px 8px;
+	}
+
+	.oha-deals-card .form-table tr:last-child > th {
+		padding-block-end: 8px;
+	}
+
+	.oha-deals-card .form-table td {
+		padding-block: 0 14px;
+	}
+
+	.oha-deals-card .form-table tr + tr > td {
+		border-block-start: 0;
+	}
+}
+
+@media (max-width: 480px) {
+
+	.oha-deals-status__facts {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}

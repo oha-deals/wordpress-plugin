@@ -1,0 +1,89 @@
+@use "./product-picker";
+
+// An empty preview must stay clickable.
+[data-type^="oha-deals/"] {
+	min-height: 48px;
+}
+
+.oha-deals-placeholder {
+	overflow: visible;
+
+	.components-placeholder__fieldset {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 8px;
+		width: 100%;
+	}
+
+	.components-placeholder__label svg {
+		fill: #ff684f;
+	}
+
+	&__message {
+		margin: 0;
+		font-size: 13px;
+	}
+}
+
+.components-disabled.is-loading {
+	opacity: 0.5;
+}
+
+.oha-deals-preview-spinner {
+	position: absolute;
+	inset-block-start: 8px;
+	inset-inline-end: 8px;
+}
+
+.oha-deals-replace .components-popover__content {
+	width: 320px;
+	padding: 12px;
+	overflow: visible;
+}
+
+.oha-deals-sortable {
+	margin: 0 0 8px;
+	padding: 0;
+	list-style: none;
+
+	&__row {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		min-height: 36px;
+		margin: 0;
+		padding: 2px 0;
+		border-bottom: 1px solid #e0e0e0;
+	}
+
+	&__content {
+		display: flex;
+		flex: 1;
+		align-items: center;
+		gap: 8px;
+		min-width: 0;
+
+		img {
+			flex: none;
+			object-fit: contain;
+		}
+	}
+
+	&__name {
+		overflow: hidden;
+		font-size: 13px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}
+
+.oha-deals-products__full {
+	margin: 0;
+	color: #757575;
+	font-size: 12px;
+}
+
+// The popover clips absolutely positioned content.
+.oha-deals-replace .oha-deals-picker__list {
+	position: static;
+}

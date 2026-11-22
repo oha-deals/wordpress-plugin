@@ -1,0 +1,1935 @@
+# German (Germany) translation of oha.deals.
+# Copyright (C) 2026 oha.deals
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: oha.deals – Price Comparison & Deals 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/oha-deals\n"
+"Last-Translator: oha.deals\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-22T09:57:53+00:00\n"
+"PO-Revision-Date: 2026-11-22 12:00+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: oha-deals\n"
+
+#. Plugin Name of the plugin
+#: oha-deals.php
+#: includes/Privacy/Policy.php:50
+msgid "oha.deals – Price Comparison & Deals"
+msgstr "oha.deals – Preisvergleich & Deals"
+
+#. Plugin URI of the plugin
+#: oha-deals.php
+msgid "https://github.com/oha-deals/wordpress-plugin"
+msgstr "https://github.com/oha-deals/wordpress-plugin"
+
+#. Description of the plugin
+#: oha-deals.php
+msgid "Live price comparisons, deals, coupons and price history from the oha.deals Partner API, as blocks and shortcodes."
+msgstr "Live-Preisvergleiche, Deals, Gutscheine und Preisverlauf aus der oha.deals Partner-API, als Blöcke und Shortcodes."
+
+#. Author of the plugin
+#: oha-deals.php
+#: includes/Admin/SettingsPage.php:121
+#: includes/Admin/SettingsPage.php:122
+#: includes/Admin/SettingsPage.php:257
+#: includes/Admin/SiteHealth.php:86
+#: includes/Admin/SiteHealth.php:134
+#: includes/Blocks/Patterns.php:70
+#: includes/Blocks/Registry.php:113
+msgid "oha.deals"
+msgstr "oha.deals"
+
+#. Author URI of the plugin
+#: oha-deals.php
+msgid "https://oha.deals"
+msgstr "https://oha.deals"
+
+#: includes/Admin/KeyInfo.php:30
+msgid "Own affiliate links"
+msgstr "Eigene Affiliate-Links"
+
+#: includes/Admin/KeyInfo.php:31
+#: includes/Admin/SettingsPage.php:429
+msgid "Price history"
+msgstr "Preisverlauf"
+
+#: includes/Admin/KeyInfo.php:32
+msgid "Amazon prices and images"
+msgstr "Amazon-Preise und -Bilder"
+
+#: includes/Admin/KeyInfo.php:45
+msgid "Free"
+msgstr "Free"
+
+#: includes/Admin/KeyInfo.php:47
+msgid "Pro"
+msgstr "Pro"
+
+#: includes/Admin/KeyInfo.php:49
+msgid "Business"
+msgstr "Business"
+
+#: includes/Admin/KeyInfo.php:51
+msgid "Internal"
+msgstr "Intern"
+
+#: includes/Admin/KeyInfo.php:53
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#. translators: 1: requests per minute, 2: requests per day.
+#: includes/Admin/KeyInfo.php:117
+#, php-format
+msgid "%1$s requests per minute, %2$s per day"
+msgstr "%1$s Anfragen pro Minute, %2$s pro Tag"
+
+#: includes/Admin/OnboardingNotice.php:75
+msgid "oha.deals is active."
+msgstr "oha.deals ist aktiv."
+
+#: includes/Admin/OnboardingNotice.php:76
+msgid "Add your API key to show prices, deals and coupons on your site."
+msgstr "Trage deinen API-Schlüssel ein, um Preise, Deals und Gutscheine auf deiner Website anzuzeigen."
+
+#: includes/Admin/OnboardingNotice.php:78
+#: includes/Admin/SiteHealth.php:97
+#: build/blocks/comparison/index.js:1
+#: build/blocks/coupons/index.js:1
+#: build/blocks/deals/index.js:1
+#: build/blocks/offers/index.js:1
+#: build/blocks/price-history/index.js:1
+#: build/blocks/product/index.js:1
+msgid "Open the oha.deals settings"
+msgstr "oha.deals-Einstellungen öffnen"
+
+#: includes/Admin/OnboardingNotice.php:80
+msgid "Dismiss"
+msgstr "Ausblenden"
+
+#: includes/Admin/OnboardingNotice.php:92
+msgid "You are not allowed to do this."
+msgstr "Du hast dafür keine Berechtigung."
+
+#: includes/Admin/SettingsPage.php:155
+msgid "Connection"
+msgstr "Verbindung"
+
+#: includes/Admin/SettingsPage.php:156
+msgid "Your affiliate IDs"
+msgstr "Deine Affiliate-IDs"
+
+#: includes/Admin/SettingsPage.php:157
+#: build/blocks/comparison/index.js:7
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/product/index.js:3
+msgid "Display"
+msgstr "Anzeige"
+
+#: includes/Admin/SettingsPage.php:158
+msgid "Cache and data"
+msgstr "Cache und Daten"
+
+#: includes/Admin/SettingsPage.php:160
+#: includes/Admin/SiteHealth.php:141
+msgid "API key"
+msgstr "API-Schlüssel"
+
+#: includes/Admin/SettingsPage.php:162
+#: includes/Admin/SiteHealth.php:167
+msgid "Amazon tag"
+msgstr "Amazon-Tag"
+
+#: includes/Admin/SettingsPage.php:162
+msgid "Your Amazon Associates tag for amazon.de, for example example-21. Amazon offers then link straight to Amazon with your tag."
+msgstr "Dein Amazon-Partnernet-Tag für amazon.de, zum Beispiel example-21. Amazon-Angebote verlinken dann mit deinem Tag direkt zu Amazon."
+
+#: includes/Admin/SettingsPage.php:163
+#: includes/Admin/SiteHealth.php:171
+msgid "Awin publisher ID"
+msgstr "Awin-Publisher-ID"
+
+#: includes/Admin/SettingsPage.php:163
+msgid "Your numeric Awin publisher ID. Offers from Awin shops then link through your Awin account. You need to be approved by each advertiser to earn a commission."
+msgstr "Deine numerische Awin-Publisher-ID. Angebote von Awin-Shops verlinken dann über dein Awin-Konto. Für eine Provision musst du von jedem Werbetreibenden freigeschaltet sein."
+
+#: includes/Admin/SettingsPage.php:165
+msgid "Product images"
+msgstr "Produktbilder"
+
+#: includes/Admin/SettingsPage.php:165
+msgid "Show product images. They are loaded by the visitor's browser from the oha.deals image server and shop image servers."
+msgstr "Produktbilder anzeigen. Sie werden vom Browser der Besucher vom oha.deals-Bildserver und von den Bildservern der Shops geladen."
+
+#: includes/Admin/SettingsPage.php:166
+msgid "Link attributes"
+msgstr "Link-Attribute"
+
+#: includes/Admin/SettingsPage.php:166
+msgid "Mark your affiliate links as rel=\"sponsored nofollow\" and links to oha.deals as rel=\"nofollow\" (recommended by search engines)."
+msgstr "Deine Affiliate-Links mit rel=\"sponsored nofollow\" und Links zu oha.deals mit rel=\"nofollow\" kennzeichnen (von Suchmaschinen empfohlen)."
+
+#: includes/Admin/SettingsPage.php:167
+msgid "New tab"
+msgstr "Neuer Tab"
+
+#: includes/Admin/SettingsPage.php:167
+msgid "Open outgoing links in a new tab."
+msgstr "Ausgehende Links in einem neuen Tab öffnen."
+
+#: includes/Admin/SettingsPage.php:168
+#: build/blocks/product/index.js:2
+msgid "Disclosure"
+msgstr "Hinweis"
+
+#: includes/Admin/SettingsPage.php:168
+msgid "Show under each element where its links lead."
+msgstr "Unter jedem Element anzeigen, wohin seine Links führen."
+
+#: includes/Admin/SettingsPage.php:169
+msgid "Disclosure text"
+msgstr "Hinweistext"
+
+#: includes/Admin/SettingsPage.php:169
+msgid "Leave empty for the default text: \"Links to shops are affiliate links.\" when an element contains your own affiliate links, otherwise \"Links lead to the price comparison on oha.deals.\""
+msgstr "Leer lassen für den Standardtext: „Links zu Shops sind Affiliate-Links.“, wenn ein Element deine eigenen Affiliate-Links enthält, sonst „Die Links führen zum Preisvergleich auf oha.deals.“"
+
+#: includes/Admin/SettingsPage.php:170
+msgid "Credit"
+msgstr "Quellenangabe"
+
+#: includes/Admin/SettingsPage.php:170
+msgid "Show a small \"Prices by oha.deals\" link."
+msgstr "Einen kleinen Link „Preise von oha.deals“ anzeigen."
+
+#: includes/Admin/SettingsPage.php:171
+msgid "Structured data"
+msgstr "Strukturierte Daten"
+
+#: includes/Admin/SettingsPage.php:171
+msgid "Add schema.org Product data (JSON-LD) to product cards. Amazon prices are never included."
+msgstr "schema.org-Produktdaten (JSON-LD) zu Produktkarten hinzufügen. Amazon-Preise sind nie enthalten."
+
+#: includes/Admin/SettingsPage.php:173
+msgid "Cache lifetime"
+msgstr "Cache-Dauer"
+
+#: includes/Admin/SettingsPage.php:174
+msgid "Uninstall"
+msgstr "Deinstallation"
+
+#: includes/Admin/SettingsPage.php:174
+msgid "Delete the settings and cached prices when the plugin is deleted."
+msgstr "Einstellungen und zwischengespeicherte Preise löschen, wenn das Plugin gelöscht wird."
+
+#: includes/Admin/SettingsPage.php:206
+msgid "Overview"
+msgstr "Übersicht"
+
+#: includes/Admin/SettingsPage.php:208
+msgid "oha.deals shows live prices, shop offers, deals, coupons and price history. Your server asks the oha.deals Partner API with your API key and keeps the answers in a cache, so visitors never contact the API."
+msgstr "oha.deals zeigt Live-Preise, Shop-Angebote, Deals, Gutscheine und den Preisverlauf. Dein Server fragt die oha.deals Partner-API mit deinem API-Schlüssel ab und speichert die Antworten im Cache. Besucher greifen also nie selbst auf die API zu."
+
+#: includes/Admin/SettingsPage.php:209
+msgid "If the API cannot be reached, cached prices keep showing for a while. After that the blocks show nothing to visitors; users who can edit posts see a short notice."
+msgstr "Ist die API nicht erreichbar, werden zwischengespeicherte Preise noch eine Weile angezeigt. Danach zeigen die Blöcke Besuchern nichts an; Nutzer, die Beiträge bearbeiten dürfen, sehen einen kurzen Hinweis."
+
+#: includes/Admin/SettingsPage.php:216
+msgid "Links and commission"
+msgstr "Links und Provision"
+
+#: includes/Admin/SettingsPage.php:221
+msgid "For more information:"
+msgstr "Weitere Informationen:"
+
+#: includes/Admin/SettingsPage.php:222
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: includes/Admin/SettingsPage.php:223
+#: includes/Admin/SettingsPage.php:392
+#: includes/Admin/SettingsPage.php:471
+msgid "Request an API key"
+msgstr "API-Schlüssel anfordern"
+
+#: includes/Admin/SettingsPage.php:237
+#: includes/Admin/SiteHealth.php:148
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: includes/Admin/SettingsPage.php:258
+msgid "Live prices, deals, coupons and price history for your posts and pages."
+msgstr "Live-Preise, Deals, Gutscheine und Preisverlauf für deine Beiträge und Seiten."
+
+#: includes/Admin/SettingsPage.php:296
+msgid "Connected"
+msgstr "Verbunden"
+
+#: includes/Admin/SettingsPage.php:297
+msgid "Checking the connection…"
+msgstr "Verbindung wird geprüft …"
+
+#: includes/Admin/SettingsPage.php:298
+msgid "Connection problem"
+msgstr "Verbindungsproblem"
+
+#: includes/Admin/SettingsPage.php:299
+msgid "The connection works."
+msgstr "Die Verbindung funktioniert."
+
+#: includes/Admin/SettingsPage.php:300
+msgid "Clearing the cache…"
+msgstr "Cache wird geleert …"
+
+#: includes/Admin/SettingsPage.php:301
+msgid "The request failed. Reload the page and try again."
+msgstr "Die Anfrage ist fehlgeschlagen. Lade die Seite neu und versuche es erneut."
+
+#: includes/Admin/SettingsPage.php:302
+msgid "included"
+msgstr "enthalten"
+
+#: includes/Admin/SettingsPage.php:303
+msgid "not included"
+msgstr "nicht enthalten"
+
+#: includes/Admin/SettingsPage.php:332
+msgid "Testing the connection and clearing the cache need JavaScript."
+msgstr "Zum Testen der Verbindung und zum Leeren des Caches wird JavaScript benötigt."
+
+#: includes/Admin/SettingsPage.php:336
+msgid "Your key includes"
+msgstr "Dein Schlüssel enthält"
+
+#: includes/Admin/SettingsPage.php:349
+msgid "Rate limit"
+msgstr "Anfragelimit"
+
+#: includes/Admin/SettingsPage.php:353
+msgid "Last price check"
+msgstr "Letzte Preisprüfung"
+
+#: includes/Admin/SettingsPage.php:357
+msgid "Connection tested"
+msgstr "Verbindung getestet"
+
+#: includes/Admin/SettingsPage.php:363
+msgid "Test connection"
+msgstr "Verbindung testen"
+
+#: includes/Admin/SettingsPage.php:364
+msgid "Clear cache"
+msgstr "Cache leeren"
+
+#: includes/Admin/SettingsPage.php:382
+msgid "Not connected yet"
+msgstr "Noch nicht verbunden"
+
+#: includes/Admin/SettingsPage.php:384
+msgid "The blocks need an API key from oha.deals. Until then they show nothing to visitors."
+msgstr "Die Blöcke brauchen einen API-Schlüssel von oha.deals. Bis dahin zeigen sie Besuchern nichts an."
+
+#: includes/Admin/SettingsPage.php:386
+msgid "Request an API key on oha.deals. It starts with oha_live_."
+msgstr "Fordere auf oha.deals einen API-Schlüssel an. Er beginnt mit oha_live_."
+
+#: includes/Admin/SettingsPage.php:387
+msgid "Paste the key into the field below and save."
+msgstr "Füge den Schlüssel in das Feld unten ein und speichere."
+
+#: includes/Admin/SettingsPage.php:388
+msgid "Add an oha.deals block to a post or page."
+msgstr "Füge einem Beitrag oder einer Seite einen oha.deals-Block hinzu."
+
+#: includes/Admin/SettingsPage.php:393
+#: includes/Render/Helpers.php:349
+msgid "(opens in a new tab)"
+msgstr "(öffnet in einem neuen Tab)"
+
+#: includes/Admin/SettingsPage.php:395
+msgid "I have a key"
+msgstr "Ich habe einen Schlüssel"
+
+#: includes/Admin/SettingsPage.php:409
+#: templates/comparison-table.php:250
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:3
+msgid "Product"
+msgstr "Produkt"
+
+#: includes/Admin/SettingsPage.php:410
+msgid "One product with its best price."
+msgstr "Ein Produkt mit seinem Bestpreis."
+
+#: includes/Admin/SettingsPage.php:414
+#: templates/comparison-table.php:41
+msgid "Offers"
+msgstr "Angebote"
+
+#: includes/Admin/SettingsPage.php:415
+msgid "All shop offers for a product."
+msgstr "Alle Shop-Angebote für ein Produkt."
+
+#: includes/Admin/SettingsPage.php:419
+msgid "Deals"
+msgstr "Deals"
+
+#: includes/Admin/SettingsPage.php:420
+msgid "Current price drops and low prices."
+msgstr "Aktuelle Preisstürze und niedrige Preise."
+
+#: includes/Admin/SettingsPage.php:424
+msgid "Comparison"
+msgstr "Vergleich"
+
+#: includes/Admin/SettingsPage.php:425
+msgid "Up to six products side by side."
+msgstr "Bis zu sechs Produkte nebeneinander."
+
+#: includes/Admin/SettingsPage.php:430
+msgid "A chart of a product's price."
+msgstr "Ein Diagramm zum Preis eines Produkts."
+
+#: includes/Admin/SettingsPage.php:434
+#: build/blocks/coupons/index.js:2
+msgid "Coupons"
+msgstr "Gutscheine"
+
+#: includes/Admin/SettingsPage.php:435
+msgid "Current voucher codes."
+msgstr "Aktuelle Gutscheincodes."
+
+#: includes/Admin/SettingsPage.php:439
+msgid "Price in a sentence"
+msgstr "Preis im Satz"
+
+#: includes/Admin/SettingsPage.php:440
+msgid "Only the best price, as text."
+msgstr "Nur der Bestpreis, als Text."
+
+#: includes/Admin/SettingsPage.php:446
+msgid "Getting started"
+msgstr "Erste Schritte"
+
+#: includes/Admin/SettingsPage.php:447
+msgid "In the block editor, open the inserter and look for the oha.deals category. Everywhere else, use a shortcode:"
+msgstr "Öffne im Block-Editor den Block-Inserter und suche die Kategorie „oha.deals“. Überall sonst verwendest du einen Shortcode:"
+
+#: includes/Admin/SettingsPage.php:448
+#: templates/coupons-list.php:54
+msgid "Copied"
+msgstr "Kopiert"
+
+#. translators: %s: element name, e.g. "Product".
+#: includes/Admin/SettingsPage.php:459
+#, php-format
+msgid "Copy shortcode: %s"
+msgstr "Shortcode kopieren: %s"
+
+#. translators: %s: element name, e.g. "Product".
+#: includes/Admin/SettingsPage.php:460
+msgid "Copy"
+msgstr "Kopieren"
+
+#: includes/Admin/SettingsPage.php:465
+msgid "The slug is the last part of a product address on oha.deals. You can also write ean=\"…\" with the EAN from the package."
+msgstr "Der Slug ist der letzte Teil einer Produktadresse auf oha.deals. Du kannst auch ean=\"…\" mit der EAN von der Verpackung schreiben."
+
+#: includes/Admin/SettingsPage.php:468
+msgid "Links"
+msgstr "Links"
+
+#: includes/Admin/SettingsPage.php:470
+msgid "Documentation and source code"
+msgstr "Dokumentation und Quellcode"
+
+#: includes/Admin/SettingsPage.php:472
+msgid "Terms of use"
+msgstr "Nutzungsbedingungen"
+
+#: includes/Admin/SettingsPage.php:473
+msgid "Privacy policy"
+msgstr "Datenschutzerklärung"
+
+#: includes/Admin/SettingsPage.php:485
+msgid "Your server fetches prices with this key and caches them. The key never reaches the visitor's browser."
+msgstr "Dein Server ruft Preise mit diesem Schlüssel ab und speichert sie im Cache. Der Schlüssel gelangt nie in den Browser der Besucher."
+
+#: includes/Admin/SettingsPage.php:504
+msgid "Optional. Without your own IDs, links go to the product page on oha.deals, where visitors can continue to the shops and oha.deals may earn a commission."
+msgstr "Optional. Ohne eigene IDs führen die Links zur Produktseite auf oha.deals. Von dort können Besucher weiter zu den Shops gehen, und oha.deals erhält gegebenenfalls eine Provision."
+
+#: includes/Admin/SettingsPage.php:505
+msgid "With your own IDs, the link goes straight to Amazon or Awin and the commission is yours. All other offers keep linking to oha.deals. Use only IDs of accounts in which this website is registered."
+msgstr "Mit deinen eigenen IDs führt der Link direkt zu Amazon oder Awin, und die Provision gehört dir. Alle anderen Angebote verlinken weiterhin zu oha.deals. Verwende nur IDs von Konten, bei denen diese Website registriert ist."
+
+#: includes/Admin/SettingsPage.php:544
+msgid "The key is set with the OHA_DEALS_API_KEY constant in wp-config.php."
+msgstr "Der Schlüssel ist über die Konstante OHA_DEALS_API_KEY in der wp-config.php festgelegt."
+
+#. translators: %s: masked API key.
+#: includes/Admin/SettingsPage.php:547
+#, php-format
+msgid "A key is saved (%s). Leave the field empty to keep it."
+msgstr "Ein Schlüssel ist gespeichert (%s). Lass das Feld leer, um ihn zu behalten."
+
+#: includes/Admin/SettingsPage.php:549
+msgid "Paste the key you received from oha.deals. It starts with oha_live_."
+msgstr "Füge den Schlüssel ein, den du von oha.deals erhalten hast. Er beginnt mit oha_live_."
+
+#: includes/Admin/SettingsPage.php:557
+msgid "Remove the saved key"
+msgstr "Gespeicherten Schlüssel entfernen"
+
+#. translators: %s: number of seconds.
+#: includes/Admin/SettingsPage.php:574
+#, php-format
+msgid "Custom: %s second"
+msgid_plural "Custom: %s seconds"
+msgstr[0] "Eigener Wert: %s Sekunde"
+msgstr[1] "Eigener Wert: %s Sekunden"
+
+#: includes/Admin/SettingsPage.php:584
+msgid "How long prices are reused before they are refreshed in the background. Amazon prices are never kept longer than one hour."
+msgstr "Wie lange Preise wiederverwendet werden, bevor sie im Hintergrund aktualisiert werden. Amazon-Preise werden nie länger als eine Stunde gespeichert."
+
+#. translators: %s: number of minutes.
+#: includes/Admin/SettingsPage.php:598
+#, php-format
+msgid "%s minute"
+msgid_plural "%s minutes"
+msgstr[0] "%s Minute"
+msgstr[1] "%s Minuten"
+
+#. translators: %s: number of hours.
+#: includes/Admin/SettingsPage.php:602
+#, php-format
+msgid "%s hour"
+msgid_plural "%s hours"
+msgstr[0] "%s Stunde"
+msgstr[1] "%s Stunden"
+
+#: includes/Admin/SiteHealth.php:68
+msgid "oha.deals connection"
+msgstr "oha.deals-Verbindung"
+
+#: includes/Admin/SiteHealth.php:83
+msgid "oha.deals is connected"
+msgstr "oha.deals ist verbunden"
+
+#: includes/Admin/SiteHealth.php:89
+msgid "The API key is set and the oha.deals Partner API answers."
+msgstr "Der API-Schlüssel ist gesetzt und die oha.deals Partner-API antwortet."
+
+#: includes/Admin/SiteHealth.php:101
+msgid "oha.deals has no API key"
+msgstr "oha.deals hat keinen API-Schlüssel"
+
+#: includes/Admin/SiteHealth.php:103
+msgid "Without an API key the oha.deals blocks and shortcodes show nothing."
+msgstr "Ohne API-Schlüssel zeigen die oha.deals-Blöcke und -Shortcodes nichts an."
+
+#: includes/Admin/SiteHealth.php:111
+msgid "oha.deals cannot be reached"
+msgstr "oha.deals ist nicht erreichbar"
+
+#: includes/Admin/SiteHealth.php:114
+msgid "Cached prices keep showing for a while; new products and expired prices cannot be loaded."
+msgstr "Zwischengespeicherte Preise werden noch eine Weile angezeigt; neue Produkte und abgelaufene Preise können nicht geladen werden."
+
+#: includes/Admin/SiteHealth.php:137
+msgid "Version"
+msgstr "Version"
+
+#: includes/Admin/SiteHealth.php:142
+#: includes/Admin/SiteHealth.php:168
+#: includes/Admin/SiteHealth.php:172
+msgid "Not set"
+msgstr "Nicht gesetzt"
+
+#: includes/Admin/SiteHealth.php:147
+msgid "API key source"
+msgstr "Quelle des API-Schlüssels"
+
+#: includes/Admin/SiteHealth.php:151
+msgid "API base URL"
+msgstr "Basis-URL der API"
+
+#: includes/Admin/SiteHealth.php:155
+msgid "Cache lifetime (seconds)"
+msgstr "Cache-Dauer (Sekunden)"
+
+#: includes/Admin/SiteHealth.php:159
+msgid "Cache version"
+msgstr "Cache-Version"
+
+#: includes/Admin/SiteHealth.php:163
+msgid "Persistent object cache"
+msgstr "Persistenter Objekt-Cache"
+
+#: includes/Admin/SiteHealth.php:164
+msgid "Yes"
+msgstr "Ja"
+
+#: includes/Admin/SiteHealth.php:164
+msgid "No"
+msgstr "Nein"
+
+#: includes/Admin/SiteHealth.php:175
+msgid "Background refresh"
+msgstr "Aktualisierung im Hintergrund"
+
+#: includes/Admin/SiteHealth.php:176
+msgid "WP-Cron is disabled; a system cron must run wp-cron.php"
+msgstr "WP-Cron ist deaktiviert; ein System-Cronjob muss wp-cron.php ausführen"
+
+#: includes/Admin/SiteHealth.php:176
+msgid "WP-Cron"
+msgstr "WP-Cron"
+
+#: includes/Api/Cache.php:156
+msgid "The oha.deals API is not reachable at the moment."
+msgstr "Die oha.deals-API ist im Moment nicht erreichbar."
+
+#: includes/Api/Client.php:70
+msgid "No oha.deals API key is configured."
+msgstr "Es ist kein oha.deals-API-Schlüssel eingerichtet."
+
+#: includes/Api/Client.php:161
+msgid "The oha.deals API could not be reached."
+msgstr "Die oha.deals-API konnte nicht erreicht werden."
+
+#. translators: %d: HTTP status code.
+#: includes/Api/Client.php:194
+#, php-format
+msgid "The oha.deals API answered with HTTP status %d."
+msgstr "Die oha.deals-API hat mit dem HTTP-Status %d geantwortet."
+
+#: includes/Api/Query.php:100
+msgid "Unknown query type. Use product, products, search, deals, coupons or categories."
+msgstr "Unbekannter Abfragetyp. Verwende product, products, search, deals, coupons oder categories."
+
+#: includes/Api/Repository.php:93
+msgid "Enter a product slug, an EAN or an oha.deals product URL."
+msgstr "Gib einen Produkt-Slug, eine EAN oder eine oha.deals-Produkt-URL ein."
+
+#: includes/Api/Repository.php:244
+msgid "The shop host is not valid. Use a domain such as alternate.de."
+msgstr "Der Shop-Host ist ungültig. Verwende eine Domain wie alternate.de."
+
+#: includes/Api/Repository.php:405
+msgid "The oha.deals API sent an unexpected response."
+msgstr "Die oha.deals-API hat eine unerwartete Antwort gesendet."
+
+#: includes/Blocks/Bindings.php:103
+msgctxt "block bindings source"
+msgid "oha.deals product"
+msgstr "oha.deals-Produkt"
+
+#: includes/Blocks/Patterns.php:113
+msgctxt "Pattern title"
+msgid "Comparison with verdict"
+msgstr "Vergleich mit Fazit"
+
+#: includes/Blocks/Patterns.php:114
+msgctxt "Pattern description"
+msgid "A comparison table of two to six products, followed by a short verdict."
+msgstr "Eine Vergleichstabelle mit zwei bis sechs Produkten, gefolgt von einem kurzen Fazit."
+
+#: includes/Blocks/Patterns.php:117
+msgctxt "Pattern title"
+msgid "Deals page with coupons"
+msgstr "Deals-Seite mit Gutscheinen"
+
+#: includes/Blocks/Patterns.php:118
+msgctxt "Pattern description"
+msgid "Price drops, lowest prices and coupon codes, each with a heading."
+msgstr "Preisstürze, Tiefstpreise und Gutscheincodes, jeweils mit einer Überschrift."
+
+#: includes/Blocks/Patterns.php:121
+msgctxt "Pattern title"
+msgid "Product card with price history"
+msgstr "Produktkarte mit Preisverlauf"
+
+#: includes/Blocks/Patterns.php:122
+msgctxt "Pattern description"
+msgid "A product card, the advantages and drawbacks side by side, and the price history for the question when to buy."
+msgstr "Eine Produktkarte, Vor- und Nachteile nebeneinander und der Preisverlauf für die Frage, wann man kaufen sollte."
+
+#: includes/Blocks/Patterns.php:125
+msgctxt "Pattern title"
+msgid "Top 5 list with intro"
+msgstr "Top-5-Liste mit Einleitung"
+
+#: includes/Blocks/Patterns.php:126
+msgctxt "Pattern description"
+msgid "An introduction, a numbered list of products with live prices and a note on how they were chosen."
+msgstr "Eine Einleitung, eine nummerierte Liste von Produkten mit Live-Preisen und ein Hinweis, wie sie ausgewählt wurden."
+
+#: includes/Blocks/Registry.php:157
+msgid "oha.deals: the blocks are not available because the build/ directory is missing. Run \"npm install && npm run build\" in the plugin directory, or install the plugin from WordPress.org. Shortcodes keep working."
+msgstr "oha.deals: Die Blöcke sind nicht verfügbar, weil das Verzeichnis build/ fehlt. Führe im Plugin-Verzeichnis „npm install && npm run build“ aus oder installiere das Plugin von WordPress.org. Shortcodes funktionieren weiterhin."
+
+#: includes/Privacy/Policy.php:39
+msgid "This site shows prices from the oha.deals price comparison. The prices are loaded by this site's server, so viewing a page sends no data about you to oha.deals for the prices themselves."
+msgstr "Diese Website zeigt Preise aus dem oha.deals-Preisvergleich. Die Preise werden vom Server dieser Website geladen. Beim Aufruf einer Seite werden also für die Preise selbst keine Daten über dich an oha.deals gesendet."
+
+#: includes/Privacy/Policy.php:40
+msgid "Product images are loaded by your browser directly from the image hosts named by oha.deals (the oha.deals image server and shop image servers). Those hosts receive your IP address and browser details, as with any embedded image. The site owner can turn product images off."
+msgstr "Produktbilder lädt dein Browser direkt von den Bildservern, die oha.deals nennt (der oha.deals-Bildserver und die Bildserver der Shops). Diese Server erhalten deine IP-Adresse und Browserdaten, wie bei jedem eingebetteten Bild. Der Betreiber der Website kann Produktbilder ausschalten."
+
+#: includes/Privacy/Policy.php:41
+msgid "Links either lead to the price comparison on oha.deals or, where the site owner has entered affiliate IDs, directly to Amazon or through the affiliate network Awin to the shop. When you follow a link, you leave this site, and the site you reach may process data such as cookies under its own privacy policy."
+msgstr "Links führen entweder zum Preisvergleich auf oha.deals oder, wenn der Betreiber der Website Affiliate-IDs eingetragen hat, direkt zu Amazon oder über das Affiliate-Netzwerk Awin zum Shop. Wenn du einem Link folgst, verlässt du diese Website. Die Seite, auf der du landest, kann Daten wie Cookies nach ihrer eigenen Datenschutzerklärung verarbeiten."
+
+#: includes/Privacy/Policy.php:42
+msgid "From oha.deals you can continue to the shops; oha.deals may earn a commission on purchases. Direct links to Amazon and to Awin shops are affiliate links of this site, which may earn a commission on purchases."
+msgstr "Von oha.deals aus kannst du weiter zu den Shops gehen; oha.deals erhält gegebenenfalls eine Provision auf Käufe. Direkte Links zu Amazon und zu Awin-Shops sind Affiliate-Links dieser Website, die gegebenenfalls eine Provision auf Käufe erhält."
+
+#: includes/Render/Elements.php:487
+#: includes/Render/Elements.php:537
+#: includes/Render/Elements.php:752
+#: includes/Render/Elements.php:830
+msgid "Choose a product (slug or EAN)."
+msgstr "Wähle ein Produkt (Slug oder EAN)."
+
+#: includes/Render/Elements.php:551
+msgid "There are no current offers for this product."
+msgstr "Für dieses Produkt gibt es aktuell keine Angebote."
+
+#: includes/Render/Elements.php:602
+msgid "No deals match these settings right now."
+msgstr "Zu diesen Einstellungen gibt es gerade keine Deals."
+
+#: includes/Render/Elements.php:644
+msgid "Choose the products to compare."
+msgstr "Wähle die Produkte für den Vergleich."
+
+#: includes/Render/Elements.php:652
+msgid "None of these products is listed on oha.deals."
+msgstr "Keines dieser Produkte ist auf oha.deals gelistet."
+
+#: includes/Render/Elements.php:760
+msgid "Price history needs an oha.deals plan with the history capability."
+msgstr "Der Preisverlauf braucht einen oha.deals-Tarif mit der Funktion „Preisverlauf“."
+
+#: includes/Render/Elements.php:802
+msgid "There are no coupons for this shop right now."
+msgstr "Für diesen Shop gibt es gerade keine Gutscheine."
+
+#: includes/Render/Elements.php:838
+msgid "This product has no price that may be shown here."
+msgstr "Für dieses Produkt gibt es keinen Preis, der hier angezeigt werden darf."
+
+#: includes/Render/Elements.php:947
+msgid "This product is not listed on oha.deals."
+msgstr "Dieses Produkt ist nicht auf oha.deals gelistet."
+
+#: includes/Render/Elements.php:951
+msgid "The oha.deals API key was rejected. Check it under Settings → oha.deals."
+msgstr "Der oha.deals-API-Schlüssel wurde abgelehnt. Prüfe ihn unter Einstellungen → oha.deals."
+
+#: includes/Render/Elements.php:954
+msgid "The oha.deals rate limit was reached. Prices will show again shortly."
+msgstr "Das oha.deals-Anfragelimit wurde erreicht. Die Preise werden gleich wieder angezeigt."
+
+#: includes/Render/Elements.php:960
+msgid "Prices could not be loaded from oha.deals right now."
+msgstr "Preise konnten gerade nicht von oha.deals geladen werden."
+
+#: includes/Render/Elements.php:972
+msgid "Add your oha.deals API key under Settings → oha.deals."
+msgstr "Trage deinen oha.deals-API-Schlüssel unter Einstellungen → oha.deals ein."
+
+#. translators: %s: a number. Adjust spacing to your locale, e.g. "%s %%".
+#: includes/Render/Formatter.php:83
+#, php-format
+msgid "%s%%"
+msgstr "%s %%"
+
+#. translators: 1: date, 2: time.
+#: includes/Render/Formatter.php:121
+#, php-format
+msgctxt "date and time"
+msgid "%1$s, %2$s"
+msgstr "%1$s, %2$s"
+
+#: includes/Render/Formatter.php:133
+msgid "Shipping unknown"
+msgstr "Versand unbekannt"
+
+#: includes/Render/Formatter.php:136
+#: build/blocks/offers/index.js:3
+#: build/blocks/product/index.js:5
+msgid "Free shipping"
+msgstr "Versandkostenfrei"
+
+#. translators: %s: shipping cost with currency.
+#: includes/Render/Formatter.php:140
+#, php-format
+msgid "+ %s shipping"
+msgstr "+ %s Versand"
+
+#: includes/Render/Formatter.php:152
+#: build/blocks/offers/index.js:3
+msgid "In stock"
+msgstr "Auf Lager"
+
+#: includes/Render/Formatter.php:154
+msgid "Ships in a few days"
+msgstr "Versand in wenigen Tagen"
+
+#: includes/Render/Formatter.php:156
+msgid "Longer delivery time"
+msgstr "Längere Lieferzeit"
+
+#: includes/Render/Formatter.php:158
+msgid "On order"
+msgstr "Auf Bestellung"
+
+#: includes/Render/Formatter.php:173
+msgid "Used"
+msgstr "Gebraucht"
+
+#: includes/Render/Formatter.php:175
+msgid "Refurbished"
+msgstr "Generalüberholt"
+
+#: includes/Render/Helpers.php:134
+#: includes/Render/Helpers.php:149
+msgid "Compare on oha.deals"
+msgstr "Auf oha.deals vergleichen"
+
+#: includes/Render/Helpers.php:137
+#: build/blocks/offers/index.js:3
+#: build/blocks/product/index.js:5
+msgid "To the shop"
+msgstr "Zum Shop"
+
+#: includes/Render/Helpers.php:148
+#: build/blocks/product/index.js:5
+msgid "View best price"
+msgstr "Zum Bestpreis"
+
+#: includes/Render/Helpers.php:174
+msgid "View on oha.deals"
+msgstr "Auf oha.deals ansehen"
+
+#. translators: %s: shop name.
+#: includes/Render/Helpers.php:178
+#: build/blocks/coupons/index.js:4
+#, php-format,js-format
+msgid "Redeem at %s"
+msgstr "Bei %s einlösen"
+
+#. translators: %s: date and time.
+#: includes/Render/Helpers.php:270
+#, php-format
+msgid "Price as of %s"
+msgstr "Preis vom %s"
+
+#. translators: %s: shop name.
+#: includes/Render/Helpers.php:306
+#, php-format
+msgid "View price at %s"
+msgstr "Preis bei %s ansehen"
+
+#: includes/Render/Helpers.php:414
+msgid "Amazon prices as of the time shown. Prices and availability may change; the price shown on Amazon at the time of purchase applies."
+msgstr "Amazon-Preise mit Stand zum angezeigten Zeitpunkt. Preise und Verfügbarkeit können sich ändern; maßgeblich ist der Preis, der zum Zeitpunkt des Kaufs bei Amazon angezeigt wird."
+
+#: includes/Render/Helpers.php:419
+msgid "As an Amazon Associate, this site earns from qualifying purchases."
+msgstr "Als Amazon-Partner verdient diese Website an qualifizierten Verkäufen."
+
+#. translators: %s: link to oha.deals.
+#: includes/Render/Helpers.php:428
+#, php-format
+msgid "Prices by %s"
+msgstr "Preise von %s"
+
+#. translators: %s: product name.
+#: includes/Render/HistoryChart.php:127
+#: templates/price-history.php:29
+#: build/blocks/price-history/index.js:3
+#, php-format,js-format
+msgid "Price history of %s"
+msgstr "Preisverlauf von %s"
+
+#. translators: 1: price, 2: date.
+#: includes/Render/HistoryChart.php:133
+#, php-format
+msgid "The price has been %1$s since %2$s."
+msgstr "Der Preis liegt seit %2$s bei %1$s."
+
+#. translators: 1: start date, 2: end date, 3: lowest price, 4: highest price, 5: latest price.
+#: includes/Render/HistoryChart.php:140
+#, php-format
+msgid "From %1$s to %2$s. Lowest price %3$s, highest price %4$s, latest price %5$s."
+msgstr "Vom %1$s bis zum %2$s. Niedrigster Preis %3$s, höchster Preis %4$s, letzter Preis %5$s."
+
+#: includes/Render/HistoryChart.php:186
+#: includes/Render/HistoryChart.php:541
+#: templates/comparison-table.php:37
+#: templates/comparison-table.php:195
+#: templates/offers-table.php:64
+#: templates/product-card.php:62
+#: build/blocks/comparison/index.js:7
+#: build/blocks/offers/index.js:3
+#: build/blocks/product/index.js:2
+msgid "Best price"
+msgstr "Bestpreis"
+
+#: includes/Render/HistoryChart.php:187
+#: includes/Render/HistoryChart.php:542
+msgid "Average price"
+msgstr "Durchschnittspreis"
+
+#: includes/Render/HistoryChart.php:213
+msgid "Current price"
+msgstr "Aktueller Preis"
+
+#: includes/Render/HistoryChart.php:215
+#: build/blocks/deals/index.js:2
+msgid "Lowest price"
+msgstr "Niedrigster Preis"
+
+#: includes/Render/HistoryChart.php:216
+msgid "Highest price"
+msgstr "Höchster Preis"
+
+#. translators: PHP date format (month and year) for the price chart axis, see https://www.php.net/manual/datetime.format.php
+#: includes/Render/HistoryChart.php:241
+msgctxt "price chart axis"
+msgid "M Y"
+msgstr "M Y"
+
+#. translators: PHP date format (month and day) for the price chart axis, see https://www.php.net/manual/datetime.format.php
+#: includes/Render/HistoryChart.php:244
+msgctxt "price chart axis"
+msgid "M j"
+msgstr "j. M"
+
+#. translators: 1: start date, 2: end date.
+#: includes/Render/HistoryChart.php:314
+#, php-format
+msgid "%1$s – %2$s"
+msgstr "%1$s – %2$s"
+
+#: includes/Render/HistoryChart.php:357
+msgid "Price by date"
+msgstr "Preis nach Datum"
+
+#: includes/Render/HistoryChart.php:537
+msgid "Show price data"
+msgstr "Preisdaten anzeigen"
+
+#: includes/Render/HistoryChart.php:540
+msgid "Date"
+msgstr "Datum"
+
+#: includes/Rest/EditorController.php:158
+msgid "Comma-separated slugs, EANs or oha.deals product URLs (at most six are used)."
+msgstr "Durch Kommas getrennte Slugs, EANs oder oha.deals-Produkt-URLs (es werden höchstens sechs verwendet)."
+
+#: includes/Rest/EditorController.php:243
+msgid "Pass a slug or an EAN."
+msgstr "Gib einen Slug oder eine EAN an."
+
+#. translators: 1: plan name, 2: list of capabilities, 3: rate limit, e.g. "60 requests per minute, 10,000 per day".
+#: includes/Rest/EditorController.php:298
+#, php-format
+msgid "Connected. Plan: %1$s. Included: %2$s. Rate limit: %3$s."
+msgstr "Verbunden. Tarif: %1$s. Enthalten: %2$s. Anfragelimit: %3$s."
+
+#: includes/Rest/EditorController.php:300
+msgid "none"
+msgstr "nichts"
+
+#: includes/Rest/EditorController.php:328
+msgid "The cache was cleared. Prices are fetched again on the next page view."
+msgstr "Der Cache wurde geleert. Die Preise werden beim nächsten Seitenaufruf neu abgerufen."
+
+#: includes/Settings/Options.php:245
+msgid "Links to shops are affiliate links."
+msgstr "Links zu Shops sind Affiliate-Links."
+
+#: includes/Settings/Options.php:246
+msgid "Links lead to the price comparison on oha.deals."
+msgstr "Die Links führen zum Preisvergleich auf oha.deals."
+
+#: includes/Settings/Options.php:300
+msgid "The API key looks wrong. It starts with oha_live_ or oha_test_. The previous key was kept."
+msgstr "Der API-Schlüssel sieht falsch aus. Er beginnt mit oha_live_ oder oha_test_. Der bisherige Schlüssel wurde beibehalten."
+
+#: includes/Settings/Options.php:313
+msgid "Amazon tags usually end in -21 (or another -2x number). The tag was saved anyway."
+msgstr "Amazon-Tags enden meist auf -21 (oder eine andere Zahl mit -2x). Das Tag wurde trotzdem gespeichert."
+
+#: includes/Settings/Options.php:317
+msgid "The Amazon tag may only contain lowercase letters, digits and hyphens. The previous tag was kept."
+msgstr "Das Amazon-Tag darf nur Kleinbuchstaben, Ziffern und Bindestriche enthalten. Das bisherige Tag wurde beibehalten."
+
+#: includes/Settings/Options.php:326
+msgid "The Awin publisher ID may only contain digits. The previous ID was kept."
+msgstr "Die Awin-Publisher-ID darf nur Ziffern enthalten. Die bisherige ID wurde beibehalten."
+
+#. translators: 1: required PHP version, 2: current PHP version.
+#: oha-deals.php:48
+#, php-format
+msgid "oha.deals needs PHP %1$s or newer. This server runs PHP %2$s, so the plugin is inactive."
+msgstr "oha.deals benötigt PHP %1$s oder neuer. Dieser Server verwendet PHP %2$s, deshalb ist das Plugin inaktiv."
+
+#: patterns/comparison.php:17
+msgctxt "Pattern placeholder text."
+msgid "The models side by side"
+msgstr "Die Modelle im Vergleich"
+
+#: patterns/comparison.php:24
+msgctxt "Pattern placeholder text."
+msgid "Our verdict"
+msgstr "Unser Fazit"
+
+#: patterns/comparison.php:28
+msgctxt "Pattern placeholder text."
+msgid "Say which model suits whom, and why."
+msgstr "Schreibe, welches Modell zu wem passt und warum."
+
+#: patterns/deals-page.php:17
+msgctxt "Pattern placeholder text."
+msgid "The best price drops of the day, updated automatically."
+msgstr "Die besten Preisstürze des Tages, automatisch aktualisiert."
+
+#: patterns/deals-page.php:21
+msgctxt "Pattern placeholder text."
+msgid "Price drops"
+msgstr "Preisstürze"
+
+#: patterns/deals-page.php:27
+msgctxt "Pattern placeholder text."
+msgid "At their lowest price"
+msgstr "Zum Tiefstpreis"
+
+#: patterns/deals-page.php:33
+msgctxt "Pattern placeholder text."
+msgid "Coupon codes"
+msgstr "Gutscheincodes"
+
+#: patterns/product-review.php:21
+msgctxt "Pattern placeholder text."
+msgid "What we like"
+msgstr "Das gefällt uns"
+
+#: patterns/product-review.php:26
+msgctxt "Pattern placeholder text."
+msgid "An advantage"
+msgstr "Ein Vorteil"
+
+#: patterns/product-review.php:30
+msgctxt "Pattern placeholder text."
+msgid "Another advantage"
+msgstr "Noch ein Vorteil"
+
+#: patterns/product-review.php:37
+msgctxt "Pattern placeholder text."
+msgid "What could be better"
+msgstr "Das könnte besser sein"
+
+#: patterns/product-review.php:42
+msgctxt "Pattern placeholder text."
+msgid "A drawback"
+msgstr "Ein Nachteil"
+
+#: patterns/product-review.php:49
+msgctxt "Pattern placeholder text."
+msgid "Is this a good price?"
+msgstr "Ist das ein guter Preis?"
+
+#: patterns/top-list.php:17
+msgctxt "Pattern placeholder text."
+msgid "Our top 5"
+msgstr "Unsere Top 5"
+
+#: patterns/top-list.php:21
+msgctxt "Pattern placeholder text."
+msgid "Say in two or three sentences who this list is for and what you looked at. The prices below are updated automatically."
+msgstr "Schreibe in zwei oder drei Sätzen, für wen diese Liste ist und worauf du geschaut hast. Die Preise unten werden automatisch aktualisiert."
+
+#: patterns/top-list.php:27
+msgctxt "Pattern placeholder text."
+msgid "How we chose"
+msgstr "So haben wir ausgewählt"
+
+#: patterns/top-list.php:32
+msgctxt "Pattern placeholder text."
+msgid "First criterion"
+msgstr "Erstes Kriterium"
+
+#: patterns/top-list.php:36
+msgctxt "Pattern placeholder text."
+msgid "Second criterion"
+msgstr "Zweites Kriterium"
+
+#: templates/comparison-table.php:34
+msgid "not available"
+msgstr "nicht verfügbar"
+
+#: templates/comparison-table.php:38
+#: build/blocks/comparison/index.js:7
+#: build/blocks/product/index.js:2
+msgid "30-day low"
+msgstr "30-Tage-Tief"
+
+#: templates/comparison-table.php:39
+#: build/blocks/comparison/index.js:7
+#: build/blocks/product/index.js:2
+msgid "Discount"
+msgstr "Rabatt"
+
+#: templates/comparison-table.php:40
+#: templates/offers-table.php:44
+#: build/blocks/comparison/index.js:7
+#: build/blocks/product/index.js:2
+msgid "Shop"
+msgstr "Shop"
+
+#: templates/comparison-table.php:42
+#: build/blocks/comparison/index.js:7
+#: build/blocks/product/index.js:2
+msgid "Lowest price so far"
+msgstr "Tiefster Preis bisher"
+
+#: templates/comparison-table.php:43
+#: build/blocks/comparison/index.js:7
+msgid "Price change, 30 days"
+msgstr "Preisänderung, 30 Tage"
+
+#: templates/comparison-table.php:70
+#: templates/offers-table.php:83
+#: templates/product-card.php:125
+msgid "Price at the shop"
+msgstr "Preis im Shop"
+
+#: templates/comparison-table.php:77
+#: templates/deals-grid.php:73
+#: templates/product-card.php:71
+msgid "30-day low:"
+msgstr "30-Tage-Tief:"
+
+#. translators: %s: number of offers.
+#: templates/comparison-table.php:112
+#, php-format
+msgid "%s offer"
+msgid_plural "%s offers"
+msgstr[0] "%s Angebot"
+msgstr[1] "%s Angebote"
+
+#: templates/comparison-table.php:242
+msgid "Product comparison"
+msgstr "Produktvergleich"
+
+#: templates/comparison-table.php:248
+msgid "Rank"
+msgstr "Rang"
+
+#: templates/comparison-table.php:254
+#: templates/comparison-table.php:302
+#: templates/offers-table.php:46
+#: build/blocks/product/index.js:2
+msgid "Link"
+msgstr "Link"
+
+#. translators: %s: date.
+#: templates/coupons-list.php:40
+#, php-format
+msgid "Valid until %s"
+msgstr "Gültig bis %s"
+
+#: templates/coupons-list.php:55
+msgid "Selected – copy it with your keyboard."
+msgstr "Markiert – kopiere den Code mit der Tastatur."
+
+#: templates/coupons-list.php:67
+msgid "Code:"
+msgstr "Code:"
+
+#. translators: %s: coupon code.
+#: templates/coupons-list.php:74
+#, php-format
+msgid "Copy code %s"
+msgstr "Code %s kopieren"
+
+#: templates/coupons-list.php:81
+msgid "The code is shown at the shop."
+msgstr "Der Code wird im Shop angezeigt."
+
+#: templates/deals-grid.php:52
+#: build/blocks/deals/index.js:2
+msgid "Lowest price ever"
+msgstr "Tiefster Preis bisher"
+
+#: templates/deals-grid.php:54
+msgid "Low price"
+msgstr "Niedriger Preis"
+
+#: templates/deals-grid.php:56
+msgid "Price drop"
+msgstr "Preissturz"
+
+#. translators: %s: shop name.
+#: templates/deals-grid.php:85
+#: templates/product-card.php:79
+#: build/blocks/product/index.js:5
+#, php-format,js-format
+msgid "at %s"
+msgstr "bei %s"
+
+#: templates/notice.php:20
+msgid "(Only visible to editors.)"
+msgstr "(Nur für Redakteure sichtbar.)"
+
+#. translators: %s: product name.
+#: templates/offers-table.php:39
+#: build/blocks/offers/index.js:3
+#, php-format,js-format
+msgid "Prices for %s"
+msgstr "Preise für %s"
+
+#: templates/offers-table.php:45
+msgid "Price"
+msgstr "Preis"
+
+#. translators: %d: number of days.
+#: templates/price-history.php:35
+#, php-format
+msgid "Last %d day"
+msgid_plural "Last %d days"
+msgstr[0] "Letzter %d Tag"
+msgstr[1] "Letzte %d Tage"
+
+#: templates/price-history.php:42
+msgid "No price history has been recorded for this period yet."
+msgstr "Für diesen Zeitraum wurde noch kein Preisverlauf aufgezeichnet."
+
+#. translators: 1: price, 2: date.
+#: templates/price-history.php:52
+#, php-format
+msgid "Lowest price so far: %1$s on %2$s"
+msgstr "Tiefster Preis bisher: %1$s am %2$s"
+
+#: templates/product-card.php:87
+msgid "See the shops for the current price."
+msgstr "Den aktuellen Preis findest du in den Shops."
+
+#: templates/product-card.php:89
+msgid "Currently not available."
+msgstr "Aktuell nicht verfügbar."
+
+#. translators: 1: price, 2: shop name.
+#: templates/product-inline.php:39
+#: build/blocks/product/index.js:4
+#, php-format,js-format
+msgid "from %1$s at %2$s"
+msgstr "ab %1$s bei %2$s"
+
+#. translators: %s: price.
+#: templates/product-inline.php:42
+#, php-format
+msgid "from %s"
+msgstr "ab %s"
+
+#. translators: %d: number of search results.
+#: build/blocks/comparison/index.js:2
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+#, js-format
+msgid "%d product found."
+msgid_plural "%d products found."
+msgstr[0] "%d Produkt gefunden."
+msgstr[1] "%d Produkte gefunden."
+
+#: build/blocks/comparison/index.js:2
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "No products found."
+msgstr "Keine Produkte gefunden."
+
+#: build/blocks/comparison/index.js:2
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "The search failed."
+msgstr "Die Suche ist fehlgeschlagen."
+
+#: build/blocks/comparison/index.js:2
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Search product"
+msgstr "Produkt suchen"
+
+#: build/blocks/comparison/index.js:2
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Change product"
+msgstr "Produkt ändern"
+
+#: build/blocks/comparison/index.js:2
+#: build/blocks/comparison/index.js:5
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Remove"
+msgstr "Entfernen"
+
+#: build/blocks/comparison/index.js:2
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Name, EAN, slug or oha.deals URL"
+msgstr "Name, EAN, Slug oder oha.deals-URL"
+
+#: build/blocks/comparison/index.js:2
+#: build/blocks/comparison/index.js:7
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Products"
+msgstr "Produkte"
+
+#: build/blocks/comparison/index.js:2
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Searching…"
+msgstr "Suche läuft …"
+
+#: build/blocks/comparison/index.js:2
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Add your oha.deals API key to search products."
+msgstr "Trage deinen oha.deals-API-Schlüssel ein, um Produkte zu suchen."
+
+#: build/blocks/comparison/index.js:2
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "The search failed. Please try again, or check the API key."
+msgstr "Die Suche ist fehlgeschlagen. Versuche es erneut oder prüfe den API-Schlüssel."
+
+#. translators: %s: list item.
+#: build/blocks/comparison/index.js:3
+#, js-format
+msgid "Move %s up"
+msgstr "%s nach oben verschieben"
+
+#. translators: %s: list item.
+#: build/blocks/comparison/index.js:4
+#, js-format
+msgid "Move %s down"
+msgstr "%s nach unten verschieben"
+
+#. translators: %s: product name.
+#: build/blocks/comparison/index.js:5
+#, js-format
+msgid "Remove %s"
+msgstr "%s entfernen"
+
+#: build/blocks/comparison/index.js:5
+msgid "Add a product"
+msgstr "Produkt hinzufügen"
+
+#. translators: %s: product name.
+#: build/blocks/comparison/index.js:6
+#, js-format
+msgid "%s added."
+msgstr "%s hinzugefügt."
+
+#. translators: %d: number of products.
+#: build/blocks/comparison/index.js:7
+#, js-format
+msgid "A comparison has at most %d products."
+msgstr "Ein Vergleich hat höchstens %d Produkte."
+
+#: build/blocks/comparison/index.js:7
+msgid "The order applies to the rows or columns."
+msgstr "Die Reihenfolge gilt für die Zeilen oder Spalten."
+
+#: build/blocks/comparison/index.js:7
+msgid "Fields"
+msgstr "Felder"
+
+#: build/blocks/comparison/index.js:7
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Replace product"
+msgstr "Produkt ersetzen"
+
+#: build/blocks/comparison/index.js:7
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Choose a product to show live prices."
+msgstr "Wähle ein Produkt, um Live-Preise anzuzeigen."
+
+#: build/blocks/comparison/index.js:7
+#: build/blocks/coupons/index.js:2
+#: build/blocks/deals/index.js:2
+#: build/blocks/offers/index.js:2
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Nothing to show yet. Check the block settings."
+msgstr "Noch nichts anzuzeigen. Prüfe die Block-Einstellungen."
+
+#: build/blocks/comparison/index.js:7
+msgid "oha.deals Comparison"
+msgstr "oha.deals Vergleich"
+
+#: build/blocks/comparison/index.js:7
+msgid "Add at least two products to compare."
+msgstr "Füge mindestens zwei Produkte zum Vergleichen hinzu."
+
+#: build/blocks/comparison/index.js:7
+msgid "Orientation"
+msgstr "Ausrichtung"
+
+#: build/blocks/comparison/index.js:7
+msgid "Products as columns"
+msgstr "Produkte als Spalten"
+
+#: build/blocks/comparison/index.js:7
+msgid "Products as rows"
+msgstr "Produkte als Zeilen"
+
+#: build/blocks/comparison/index.js:7
+msgid "Number the products"
+msgstr "Produkte nummerieren"
+
+#: build/blocks/comparison/index.js:7
+msgid "Highlight the best price"
+msgstr "Bestpreis hervorheben"
+
+#: build/blocks/comparison/index.js:7
+msgid "Title"
+msgstr "Titel"
+
+#: build/blocks/comparison/index.js:7
+#: build/blocks/product/index.js:3
+msgid "Button text"
+msgstr "Button-Text"
+
+#: build/blocks/comparison/index.js:7
+#: build/blocks/product/index.js:3
+msgid "Leave empty for the default."
+msgstr "Leer lassen für den Standard."
+
+#: build/blocks/comparison/index.js:7
+#: build/blocks/product/index.js:2
+msgid "Image"
+msgstr "Bild"
+
+#: build/blocks/comparison/index.js:7
+#: build/blocks/product/index.js:2
+msgid "Brand"
+msgstr "Marke"
+
+#: build/blocks/comparison/index.js:7
+#: build/blocks/offers/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Number of offers"
+msgstr "Anzahl der Angebote"
+
+#: build/blocks/comparison/index.js:7
+msgid "Specifications"
+msgstr "Technische Daten"
+
+#: build/blocks/comparison/index.js:7
+msgid "oha.deals Comparison table"
+msgstr "oha.deals Vergleichstabelle"
+
+#: build/blocks/comparison/index.js:7
+msgid "Products side by side, one column each."
+msgstr "Produkte nebeneinander, je eine Spalte."
+
+#: build/blocks/comparison/index.js:7
+msgid "oha.deals Top list"
+msgstr "oha.deals Bestenliste"
+
+#: build/blocks/comparison/index.js:7
+msgid "A numbered list of products, one row each."
+msgstr "Eine nummerierte Liste von Produkten, je eine Zeile."
+
+#: build/blocks/coupons/index.js:2
+msgid "oha.deals Coupons"
+msgstr "oha.deals Gutscheine"
+
+#: build/blocks/coupons/index.js:2
+msgid "Shop domain"
+msgstr "Shop-Domain"
+
+#: build/blocks/coupons/index.js:2
+msgid "Optional, for example example-shop.de. Leave empty for all shops."
+msgstr "Optional, zum Beispiel example-shop.de. Leer lassen für alle Shops."
+
+#: build/blocks/coupons/index.js:2
+msgid "Number of coupons"
+msgstr "Anzahl der Gutscheine"
+
+#. translators: %s: amount, e.g. "10 %".
+#: build/blocks/coupons/index.js:3
+#, js-format
+msgid "%s off your order"
+msgstr "%s Rabatt auf deine Bestellung"
+
+#: build/blocks/deals/index.js:2
+msgid "All categories"
+msgstr "Alle Kategorien"
+
+#: build/blocks/deals/index.js:2
+#: build/blocks/product/index.js:2
+msgid "Category"
+msgstr "Kategorie"
+
+#: build/blocks/deals/index.js:2
+msgid "Categories could not be loaded."
+msgstr "Kategorien konnten nicht geladen werden."
+
+#: build/blocks/deals/index.js:2
+msgid "oha.deals Deals"
+msgstr "oha.deals Deals"
+
+#: build/blocks/deals/index.js:2
+msgid "Filter"
+msgstr "Filter"
+
+#: build/blocks/deals/index.js:2
+msgid "Show"
+msgstr "Anzeigen"
+
+#: build/blocks/deals/index.js:2
+msgid "All deals"
+msgstr "Alle Deals"
+
+#: build/blocks/deals/index.js:2
+msgid "Price drops"
+msgstr "Preisstürze"
+
+#: build/blocks/deals/index.js:2
+msgid "Lowest prices"
+msgstr "Tiefstpreise"
+
+#: build/blocks/deals/index.js:2
+msgid "Minimum price (EUR)"
+msgstr "Mindestpreis (EUR)"
+
+#: build/blocks/deals/index.js:2
+msgid "Maximum price (EUR)"
+msgstr "Höchstpreis (EUR)"
+
+#: build/blocks/deals/index.js:2
+msgid "Sort by"
+msgstr "Sortieren nach"
+
+#: build/blocks/deals/index.js:2
+msgid "Discount in percent"
+msgstr "Rabatt in Prozent"
+
+#: build/blocks/deals/index.js:2
+msgid "Discount in euros"
+msgstr "Rabatt in Euro"
+
+#: build/blocks/deals/index.js:2
+msgid "Newest"
+msgstr "Neueste"
+
+#: build/blocks/deals/index.js:2
+msgid "Number of deals"
+msgstr "Anzahl der Deals"
+
+#: build/blocks/deals/index.js:2
+msgid "Columns"
+msgstr "Spalten"
+
+#: build/blocks/deals/index.js:2
+msgid "Price drops and lowest prices in a grid."
+msgstr "Preisstürze und Tiefstpreise in einem Raster."
+
+#: build/blocks/deals/index.js:2
+msgid "oha.deals Price drops"
+msgstr "oha.deals Preisstürze"
+
+#: build/blocks/deals/index.js:2
+msgid "Products whose price has just dropped."
+msgstr "Produkte, deren Preis gerade gesunken ist."
+
+#: build/blocks/deals/index.js:2
+msgid "oha.deals Lowest prices"
+msgstr "oha.deals Tiefstpreise"
+
+#: build/blocks/deals/index.js:2
+msgid "Products at their lowest recorded price."
+msgstr "Produkte zu ihrem niedrigsten erfassten Preis."
+
+#: build/blocks/offers/index.js:2
+msgid "oha.deals Offers"
+msgstr "oha.deals Angebote"
+
+#: build/blocks/offers/index.js:2
+msgid "Show shipping costs"
+msgstr "Versandkosten anzeigen"
+
+#: build/blocks/offers/index.js:2
+msgid "Include used and refurbished offers"
+msgstr "Gebrauchte und generalüberholte Angebote einbeziehen"
+
+#: build/blocks/offers/index.js:2
+msgid "Show title"
+msgstr "Titel anzeigen"
+
+#: build/blocks/price-history/index.js:2
+msgid "oha.deals Price History"
+msgstr "oha.deals Preisverlauf"
+
+#: build/blocks/price-history/index.js:2
+msgid "Chart"
+msgstr "Diagramm"
+
+#: build/blocks/price-history/index.js:2
+msgid "Period"
+msgstr "Zeitraum"
+
+#: build/blocks/price-history/index.js:2
+#: build/blocks/product/index.js:3
+msgid "Needs an API key with the history capability."
+msgstr "Braucht einen API-Schlüssel mit der Funktion „Preisverlauf“."
+
+#: build/blocks/price-history/index.js:2
+msgid "30 days"
+msgstr "30 Tage"
+
+#: build/blocks/price-history/index.js:2
+msgid "90 days"
+msgstr "90 Tage"
+
+#: build/blocks/price-history/index.js:2
+msgid "180 days"
+msgstr "180 Tage"
+
+#: build/blocks/price-history/index.js:2
+msgid "365 days"
+msgstr "365 Tage"
+
+#: build/blocks/price-history/index.js:2
+msgid "Height (px)"
+msgstr "Höhe (px)"
+
+#: build/blocks/product/index.js:2
+msgid "Name"
+msgstr "Name"
+
+#: build/blocks/product/index.js:2
+msgid "Short description"
+msgstr "Kurzbeschreibung"
+
+#: build/blocks/product/index.js:2
+msgid "Date of the lowest price"
+msgstr "Datum des niedrigsten Preises"
+
+#: build/blocks/product/index.js:2
+msgid "Image description"
+msgstr "Bildbeschreibung"
+
+#: build/blocks/product/index.js:2
+msgid "Link relation"
+msgstr "Link-Beziehung"
+
+#: build/blocks/product/index.js:2
+msgid "Link text"
+msgstr "Linktext"
+
+#: build/blocks/product/index.js:2
+msgid "Time of the price check"
+msgstr "Zeitpunkt der Preisprüfung"
+
+#. translators: 1: product name, 2: field, e.g. "Best price".
+#: build/blocks/product/index.js:3
+#, js-format
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+#: build/blocks/product/index.js:3
+#: build/blocks/product/index.js:5
+msgid "oha.deals Product"
+msgstr "oha.deals Produkt"
+
+#: build/blocks/product/index.js:3
+msgid "Layout"
+msgstr "Layout"
+
+#: build/blocks/product/index.js:3
+msgid "Card"
+msgstr "Karte"
+
+#: build/blocks/product/index.js:3
+msgid "Compact"
+msgstr "Kompakt"
+
+#: build/blocks/product/index.js:3
+msgid "Inline"
+msgstr "Im Text"
+
+#: build/blocks/product/index.js:3
+msgid "Show image"
+msgstr "Bild anzeigen"
+
+#: build/blocks/product/index.js:3
+msgid "Shop offers to list"
+msgstr "Anzuzeigende Shop-Angebote"
+
+#: build/blocks/product/index.js:3
+msgid "Show price history"
+msgstr "Preisverlauf anzeigen"
+
+#: build/blocks/product/index.js:5
+msgid "A card with image, best price, shop offers and button."
+msgstr "Eine Karte mit Bild, Bestpreis, Shop-Angeboten und Button."
+
+#: build/blocks/product/index.js:5
+msgid "oha.deals Product, compact"
+msgstr "oha.deals Produkt, kompakt"
+
+#: build/blocks/product/index.js:5
+msgid "One row with image, best price and button."
+msgstr "Eine Zeile mit Bild, Bestpreis und Button."
+
+#: build/blocks/product/index.js:5
+msgid "oha.deals Product, inline"
+msgstr "oha.deals Produkt, im Text"
+
+#: build/blocks/product/index.js:5
+msgid "Name, best price and shop as one line of text."
+msgstr "Name, Bestpreis und Shop als eine Textzeile."
+
+#: build/blocks/comparison/block.json
+msgctxt "block title"
+msgid "oha.deals Comparison"
+msgstr "oha.deals Vergleich"
+
+#: build/blocks/comparison/block.json
+msgctxt "block description"
+msgid "Compares several products side by side or as a ranked list, with live prices."
+msgstr "Vergleicht mehrere Produkte nebeneinander oder als Rangliste, mit Live-Preisen."
+
+#: build/blocks/comparison/block.json
+msgctxt "block keyword"
+msgid "compare"
+msgstr "vergleichen"
+
+#: build/blocks/comparison/block.json
+#: build/blocks/offers/block.json
+#: build/blocks/product/block.json
+msgctxt "block keyword"
+msgid "comparison"
+msgstr "Vergleich"
+
+#: build/blocks/comparison/block.json
+#: build/blocks/offers/block.json
+msgctxt "block keyword"
+msgid "table"
+msgstr "Tabelle"
+
+#: build/blocks/comparison/block.json
+msgctxt "block keyword"
+msgid "versus"
+msgstr "Gegenüberstellung"
+
+#: build/blocks/comparison/block.json
+msgctxt "block keyword"
+msgid "top list"
+msgstr "Bestenliste"
+
+#: build/blocks/comparison/block.json
+msgctxt "block keyword"
+msgid "ranking"
+msgstr "Rangliste"
+
+#: build/blocks/coupons/block.json
+msgctxt "block title"
+msgid "oha.deals Coupons"
+msgstr "oha.deals Gutscheine"
+
+#: build/blocks/coupons/block.json
+msgctxt "block description"
+msgid "Lists current voucher codes and offers from shops."
+msgstr "Listet aktuelle Gutscheincodes und Angebote von Shops auf."
+
+#: build/blocks/coupons/block.json
+msgctxt "block keyword"
+msgid "coupon"
+msgstr "Gutschein"
+
+#: build/blocks/coupons/block.json
+msgctxt "block keyword"
+msgid "voucher"
+msgstr "Coupon"
+
+#: build/blocks/coupons/block.json
+msgctxt "block keyword"
+msgid "discount code"
+msgstr "Rabattcode"
+
+#: build/blocks/coupons/block.json
+msgctxt "block keyword"
+msgid "promo"
+msgstr "Aktion"
+
+#: build/blocks/deals/block.json
+msgctxt "block title"
+msgid "oha.deals Deals"
+msgstr "oha.deals Deals"
+
+#: build/blocks/deals/block.json
+msgctxt "block description"
+msgid "Shows current price drops and lowest prices from oha.deals."
+msgstr "Zeigt aktuelle Preisstürze und Tiefstpreise von oha.deals."
+
+#: build/blocks/deals/block.json
+msgctxt "block keyword"
+msgid "deals"
+msgstr "Deals"
+
+#: build/blocks/deals/block.json
+msgctxt "block keyword"
+msgid "discount"
+msgstr "Rabatt"
+
+#: build/blocks/deals/block.json
+msgctxt "block keyword"
+msgid "price drop"
+msgstr "Preissturz"
+
+#: build/blocks/deals/block.json
+#: build/blocks/offers/block.json
+msgctxt "block keyword"
+msgid "offers"
+msgstr "Angebote"
+
+#: build/blocks/deals/block.json
+msgctxt "block keyword"
+msgid "sale"
+msgstr "Sale"
+
+#: build/blocks/offers/block.json
+msgctxt "block title"
+msgid "oha.deals Offers"
+msgstr "oha.deals Angebote"
+
+#: build/blocks/offers/block.json
+msgctxt "block description"
+msgid "Lists the current shop offers for one product, cheapest first."
+msgstr "Listet die aktuellen Shop-Angebote für ein Produkt auf, das günstigste zuerst."
+
+#: build/blocks/offers/block.json
+#: build/blocks/price-history/block.json
+#: build/blocks/product/block.json
+msgctxt "block keyword"
+msgid "price"
+msgstr "Preis"
+
+#: build/blocks/offers/block.json
+msgctxt "block keyword"
+msgid "shops"
+msgstr "Shops"
+
+#: build/blocks/price-history/block.json
+msgctxt "block title"
+msgid "oha.deals Price History"
+msgstr "oha.deals Preisverlauf"
+
+#: build/blocks/price-history/block.json
+msgctxt "block description"
+msgid "Draws the price history of one product as a line chart."
+msgstr "Zeichnet den Preisverlauf eines Produkts als Liniendiagramm."
+
+#: build/blocks/price-history/block.json
+msgctxt "block keyword"
+msgid "history"
+msgstr "Verlauf"
+
+#: build/blocks/price-history/block.json
+msgctxt "block keyword"
+msgid "chart"
+msgstr "Diagramm"
+
+#: build/blocks/price-history/block.json
+msgctxt "block keyword"
+msgid "graph"
+msgstr "Graph"
+
+#: build/blocks/price-history/block.json
+msgctxt "block keyword"
+msgid "trend"
+msgstr "Trend"
+
+#: build/blocks/product/block.json
+msgctxt "block title"
+msgid "oha.deals Product"
+msgstr "oha.deals Produkt"
+
+#: build/blocks/product/block.json
+msgctxt "block description"
+msgid "Shows one product with its best price and shop offers from oha.deals."
+msgstr "Zeigt ein Produkt mit seinem Bestpreis und seinen Shop-Angeboten von oha.deals."
+
+#: build/blocks/product/block.json
+msgctxt "block keyword"
+msgid "product"
+msgstr "Produkt"
+
+#: build/blocks/product/block.json
+msgctxt "block keyword"
+msgid "offer"
+msgstr "Angebot"
+
+#: build/blocks/product/block.json
+msgctxt "block keyword"
+msgid "deal"
+msgstr "Deal"

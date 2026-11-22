@@ -1,0 +1,7 @@
+{
+	"data": [
+		{ "slug": "nas", "name": "NAS", "count": 120, "minPrice": 139.0 },
+		{ "slug": "ssd", "name": "SSD", "count": 840, "minPrice": 19.9 },
+		{ "name": "Missing slug is skipped", "count": 1 }
+	]
+}

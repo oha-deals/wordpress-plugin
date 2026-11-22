@@ -1,0 +1,102 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  release:
+    name: Build and GitHub release
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: ci
+    permissions:
+      contents: write
+      # For the build provenance attestation of the zip.
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check tag matches plugin version
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          header=$(grep -m1 -E '^\s*\*?\s*Version:' oha-deals.php | sed -E 's/.*Version:\s*//; s/\s+$//')
+          constant=$(grep -m1 'OHA_DEALS_VERSION' oha-deals.php | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+          stable=$(grep -m1 -E '^Stable tag:' readme.txt | sed -E 's/Stable tag:\s*//; s/\s+$//')
+          echo "tag=$tag header=$header constant=$constant stable=$stable"
+          test "$tag" = "$header"
+          test "$tag" = "$constant"
+          test "$tag" = "$stable"
+
+      - name: Release notes from CHANGELOG.md
+        run: |
+          awk -v heading="## [$GITHUB_REF_NAME]" '
+            index($0, heading) == 1 { on = 1; next }
+            on && /^(## )?\[/ { exit }
+            on && /^## / { exit }
+            on { print }
+          ' CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+          grep -q '[^[:space:]]' "$RUNNER_TEMP/notes.md"
+          cat "$RUNNER_TEMP/notes.md"
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: build
+          path: build
+
+      - name: Create the plugin zip (outside the workspace)
+        run: |
+          stage="$RUNNER_TEMP/stage"
+          mkdir -p "$stage/oha-deals"
+          rsync -a --exclude-from=.distignore ./ "$stage/oha-deals/"
+          (cd "$stage" && zip -rq "$RUNNER_TEMP/oha-deals.zip" oha-deals)
+          unzip -l "$RUNNER_TEMP/oha-deals.zip"
+
+      - uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3
+        with:
+          subject-path: ${{ runner.temp }}/oha-deals.zip
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "$RUNNER_TEMP/oha-deals.zip" \
+            --title "$GITHUB_REF_NAME" \
+            --notes-file "$RUNNER_TEMP/notes.md" \
+            --verify-tag
+
+  wordpress-org:
+    name: Deploy to WordPress.org
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: release
+    # Off until the plugin is approved: then set the repository variable WPORG_DEPLOY to "true".
+    if: vars.WPORG_DEPLOY == 'true'
+    environment: wordpress-org
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: build
+          path: build
+
+      - uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2 # 2.3.0
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: oha-deals
+          VERSION: ${{ github.ref_name }}

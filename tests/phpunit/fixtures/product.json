@@ -1,0 +1,118 @@
+{
+	"data": {
+		"id": 12345,
+		"slug": "synology-ds925-plus",
+		"name": "Synology DS925+",
+		"brand": "Synology",
+		"category": { "slug": "nas", "name": "NAS" },
+		"ean": "4711174725762",
+		"image": "https://img.oha.deals/p/synology-ds925-plus.jpg",
+		"price": 944.99,
+		"priceHidden": false,
+		"currency": "EUR",
+		"shop": "Alternate DE",
+		"offerCount": 5,
+		"change": { "d1": 0, "d7": -2.1, "d30": -4.2 },
+		"before": 989.0,
+		"priceAt": null,
+		"url": "https://oha.deals/produkt/synology-ds925-plus",
+		"spec": "4 Bay · Ryzen V1500B · 4 GB DDR4",
+		"images": [ "https://img.oha.deals/p/synology-ds925-plus.jpg" ],
+		"attrs": { "Art": "NAS" },
+		"msrp": 1299,
+		"low30": 944.99,
+		"allTimeLow": { "price": 929.0, "date": "2026-10-02" },
+		"offers": [
+			{
+				"shop": { "id": "awin-11731", "name": "Alternate DE", "host": "alternate.de" },
+				"price": 944.99,
+				"priceHidden": false,
+				"shipping": 0,
+				"total": 944.99,
+				"currency": "EUR",
+				"availability": "in_stock",
+				"condition": "new",
+				"priceAt": null,
+				"url": "https://oha.deals/api/partner/v1/go/k1/synology-ds925-plus/awin-11731",
+				"merchant": {
+					"network": "awin",
+					"asin": null,
+					"awinMerchantId": 11731,
+					"awinProductId": "38512345",
+					"url": null
+				}
+			},
+			{
+				"shop": { "id": "awin-20000", "name": "Deep Link Shop", "host": "deeplink.example" },
+				"price": 949.0,
+				"priceHidden": false,
+				"shipping": null,
+				"total": null,
+				"currency": "EUR",
+				"availability": "short",
+				"condition": "new",
+				"priceAt": null,
+				"url": "https://oha.deals/api/partner/v1/go/k1/synology-ds925-plus/awin-20000",
+				"merchant": {
+					"network": "awin",
+					"asin": null,
+					"awinMerchantId": 20000,
+					"awinProductId": null,
+					"url": "https://www.deeplink.example/p/ds925?ref=1&x=2"
+				}
+			},
+			{
+				"shop": { "id": "amazon", "name": "Amazon", "host": "amazon.de" },
+				"price": null,
+				"priceHidden": true,
+				"shipping": null,
+				"total": null,
+				"currency": "EUR",
+				"availability": "in_stock",
+				"condition": "new",
+				"priceAt": null,
+				"url": "https://oha.deals/api/partner/v1/go/k1/synology-ds925-plus/amazon",
+				"merchant": {
+					"network": "amazon",
+					"asin": "B0DXYZ1234",
+					"awinMerchantId": null,
+					"awinProductId": null,
+					"url": null
+				}
+			},
+			{
+				"shop": { "id": "other-shop", "name": "Plain Shop", "host": null },
+				"price": 999.0,
+				"priceHidden": false,
+				"shipping": 5.99,
+				"total": 1004.99,
+				"currency": "EUR",
+				"availability": "long",
+				"condition": "new",
+				"priceAt": null,
+				"url": "https://oha.deals/api/partner/v1/go/k1/synology-ds925-plus/other-shop"
+			}
+		],
+		"usedOffers": [
+			{
+				"shop": { "id": "awin-30000", "name": "Used Shop", "host": "used.example" },
+				"price": 799.0,
+				"priceHidden": false,
+				"shipping": 4.9,
+				"total": 803.9,
+				"currency": "EUR",
+				"availability": "in_stock",
+				"condition": "used",
+				"priceAt": null,
+				"url": "https://oha.deals/api/partner/v1/go/k1/synology-ds925-plus/awin-30000"
+			}
+		],
+		"pricesCheckedAt": "2026-11-20T04:15:00.000Z",
+		"history": [
+			{ "date": "2026-11-18", "price": 959.0, "avg": 965.5 },
+			{ "date": "2026-11-19", "price": 949.0, "avg": 961.2 },
+			{ "date": "2026-11-20", "price": 944.99, "avg": 960.1 }
+		]
+	},
+	"meta": {}
+}

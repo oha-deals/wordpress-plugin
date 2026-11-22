@@ -1,0 +1,70 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "oha-deals/coupons",
+	"title": "oha.deals Coupons",
+	"category": "oha-deals",
+	"description": "Lists current voucher codes and offers from shops.",
+	"keywords": [
+		"coupon",
+		"voucher",
+		"discount code",
+		"promo"
+	],
+	"textdomain": "oha-deals",
+	"version": "1.0.0",
+	"attributes": {
+		"host": {
+			"type": "string",
+			"default": ""
+		},
+		"limit": {
+			"type": "number",
+			"default": 5
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"color": {
+			"background": true,
+			"text": true,
+			"link": true,
+			"gradients": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"shadow": true,
+		"interactivity": {
+			"interactive": true,
+			"clientNavigation": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"host": "__example__",
+			"limit": 2
+		},
+		"viewportWidth": 640
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "oha-deals-frontend",
+	"viewScriptModule": "file:./view.js"
+}

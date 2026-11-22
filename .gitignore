@@ -1,0 +1,30 @@
+# Dependencies
+/node_modules/
+/vendor/
+
+# Build output (created by `npm run build`; included in the release zip)
+/build/
+
+# Release artefacts
+/*.zip
+/dist/
+
+# Tooling caches
+.phpunit.result.cache
+.phpcs-cache
+.phpstan-cache/
+.eslintcache
+.stylelintcache
+.wp-env.override.json
+
+# Local config
+.env
+
+# Editors and OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+npm-debug.log*
+/plugin-check-build/

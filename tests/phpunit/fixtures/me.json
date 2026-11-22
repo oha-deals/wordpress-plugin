@@ -1,0 +1,11 @@
+{
+	"data": {
+		"keyId": "k1",
+		"prefix": "oha_test_abc",
+		"name": "Example Blog",
+		"site": "https://blog.example",
+		"tier": "pro",
+		"capabilities": { "amazon": false, "history": true, "ownLinks": true },
+		"rateLimit": { "perMinute": 60, "perDay": 10000 }
+	}
+}

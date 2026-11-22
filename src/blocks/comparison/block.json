@@ -1,0 +1,108 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "oha-deals/comparison",
+	"title": "oha.deals Comparison",
+	"category": "oha-deals",
+	"description": "Compares several products side by side or as a ranked list, with live prices.",
+	"keywords": [
+		"compare",
+		"comparison",
+		"table",
+		"versus",
+		"top list",
+		"ranking"
+	],
+	"textdomain": "oha-deals",
+	"version": "1.0.0",
+	"attributes": {
+		"slugs": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": []
+		},
+		"fields": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": [
+				"image",
+				"price",
+				"shop",
+				"offers",
+				"lowest",
+				"specs"
+			]
+		},
+		"orientation": {
+			"type": "string",
+			"enum": [
+				"columns",
+				"rows"
+			],
+			"default": "columns"
+		},
+		"highlightBest": {
+			"type": "boolean",
+			"default": true
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		},
+		"numbered": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"color": {
+			"background": true,
+			"text": true,
+			"link": true,
+			"gradients": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"shadow": true,
+		"interactivity": {
+			"clientNavigation": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"slugs": [
+				"__example__"
+			]
+		},
+		"viewportWidth": 700
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "oha-deals-frontend"
+}
